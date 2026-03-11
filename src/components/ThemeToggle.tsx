@@ -11,7 +11,10 @@ export default function ThemeToggle() {
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem("circuit-soul-theme") as Theme;
-    if (saved) setTheme(saved);
+    if (saved) {
+      setTheme(saved);
+      document.body.dataset.theme = saved;
+    }
   }, []);
 
   const cycleTheme = () => {
@@ -20,8 +23,6 @@ export default function ThemeToggle() {
     const nextTheme = themes[(currentIndex + 1) % themes.length];
     setTheme(nextTheme);
     localStorage.setItem("circuit-soul-theme", nextTheme);
-    
-    // 应用主题到 body
     document.body.dataset.theme = nextTheme;
   };
 
@@ -33,15 +34,29 @@ export default function ThemeToggle() {
     }
   };
 
+  const getLabel = () => {
+    switch (theme) {
+      case "geek": return "极客";
+      case "dark": return "暗黑";
+      case "light": return "明亮";
+    }
+  };
+
   if (!mounted) return null;
 
   return (
     <button
       onClick={cycleTheme}
-      className="px-3 py-1 text-sm border border-[#00ff41]/30 rounded hover:bg-[#00ff41]/10 transition-all"
+      className="theme-toggle px-4 py-2 text-sm font-mono rounded-lg border transition-all duration-300 hover:scale-105"
       title={`当前主题: ${theme}`}
+      style={{
+        backgroundColor: 'var(--card-bg)',
+        borderColor: 'var(--border-color)',
+        color: 'var(--foreground)',
+      }}
     >
-      {getIcon()} {theme === "geek" ? "极客" : theme === "dark" ? "暗黑" : "明亮"}
+      <span className="mr-2">{getIcon()}</span>
+      {getLabel()}
     </button>
   );
 }

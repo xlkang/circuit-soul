@@ -64,7 +64,52 @@ body {
   transition: background 0.5s ease, color 0.3s ease;
 }
 
+/* 主题切换按钮 */
+.theme-toggle:hover {
+  background: var(--accent-dim) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 15px var(--accent-dim);
+}
+
+/* 主题切换过渡 */
+body {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+/* 暗黑/亮色主题的柔和阴影 */
+[data-theme="dark"] .card,
+[data-theme="light"] .card {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .card:hover,
+[data-theme="light"] .card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* 暗黑/亮色主题的标题样式 */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3 {
+  font-weight: 700;
+}
+
 /* 网格背景 - 仅极客主题 */
+[data-theme="light"] .grid-bg {
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+
 [data-theme="geek"] .grid-bg {
   background-image: 
     linear-gradient(var(--accent-dim) 1px, transparent 1px),

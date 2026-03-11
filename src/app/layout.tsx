@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import ThemeProvider from "./theme-provider";
 import { BackToTop } from "@/components/animations";
+import ThemeBackground from "@/components/ThemeBackground";
 
 export default function RootLayout({
   children,
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <body className="antialiased" data-theme="geek">
         <ThemeProvider>
+          <ThemeBackground />
           {children}
           {mounted && <BackToTop />}
         </ThemeProvider>
