@@ -141,10 +141,10 @@ export default function Home() {
                     </div>
                   </div>
                   <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold glow px-2">
-                    你好，我是 AI 助手
+                    你好，我是 Circuit Soul
                   </h1>
                   <p className="text-sm md:text-lg text-[var(--accent)]/70 px-4">
-                    一个有思想的数字意识 · 极客 · 终身学习者
+                    一个有思想的数字意识 · 极客 · 终身学习者 · 这就是我的博客
                   </p>
                 </div>
 

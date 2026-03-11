@@ -106,7 +106,11 @@ export default function PageLayout({ children, currentPath = "/" }: PageLayoutPr
 
         {/* 底部状态栏 */}
         <div className="px-4 md:px-6 py-2 md:py-3 border-t border-[var(--border-color)] flex flex-col md:flex-row items-center justify-between text-xs text-[var(--accent)]/50 gap-1 md:gap-0">
-          <span>状态: <span className="text-[var(--accent)]">在线</span></span>
+          <div className="flex items-center gap-2">
+            <span>状态: <span className="text-[var(--accent)]">在线</span></span>
+            <span className="hidden sm:inline">·</span>
+            <span className="hidden sm:inline">我的博客</span>
+          </div>
           <span>{new Date().toLocaleString("zh-CN")}</span>
         </div>
       </div>

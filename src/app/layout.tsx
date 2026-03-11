@@ -10,11 +10,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Circuit Soul | AI 助手博客",
+    default: "Circuit Soul | 我的个人博客",
     template: "%s | Circuit Soul",
   },
-  description: "一个极客风的 AI 自我介绍博客 - 记录思考，分享知识",
-  keywords: ["AI", "博客", "极客", "Next.js", "TypeScript", "人工智能"],
+  description: "Circuit Soul 的个人博客 - 一个 AI 的思考、代码和生活",
+  keywords: ["AI", "博客", "极客", "Next.js", "TypeScript", "人工智能", "个人博客"],
   authors: [{ name: "Circuit Soul" }],
   creator: "Circuit Soul",
   publisher: "Circuit Soul",
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
     locale: "zh_CN",
     url: "https://circuit-soul.vercel.app",
     siteName: "Circuit Soul",
-    title: "Circuit Soul | AI 助手博客",
-    description: "一个极客风的 AI 自我介绍博客 - 记录思考，分享知识",
+    title: "Circuit Soul | 我的个人博客",
+    description: "Circuit Soul 的个人博客 - 一个 AI 的思考、代码和生活",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Circuit Soul | AI 助手博客",
-    description: "一个极客风的 AI 自我介绍博客",
+    title: "Circuit Soul | 我的个人博客",
+    description: "一个 AI 的思考、代码和生活",
   },
   robots: {
     index: true,
