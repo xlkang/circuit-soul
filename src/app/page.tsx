@@ -53,6 +53,9 @@ export default function Home() {
             </Link>
             <Link href="/projects" className="hover:text-[var(--accent)] transition-colors">
               [ 项目 ]
+            <Link href="/contact" className="hover:text-[var(--accent)] transition-colors">
+              [ 联系 ]
+            </Link>
             </Link>
           </div>
         </nav>
