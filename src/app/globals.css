@@ -1,11 +1,36 @@
 @import "tailwindcss";
 
-:root {
+/* 极客主题（默认） */
+:root, [data-theme="geek"] {
   --background: #0a0a0a;
   --foreground: #00ff41;
   --accent: #00ff41;
   --accent-dim: #00ff4133;
   --terminal-bg: #0d1117;
+  --card-bg: #00ff4105;
+  --border-color: #00ff4130;
+}
+
+/* 暗黑主题 */
+[data-theme="dark"] {
+  --background: #0f0f0f;
+  --foreground: #e0e0e0;
+  --accent: #64b5f6;
+  --accent-dim: #64b5f633;
+  --terminal-bg: #1a1a1a;
+  --card-bg: #64b5f605;
+  --border-color: #64b5f630;
+}
+
+/* 亮色主题 */
+[data-theme="light"] {
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --accent: #2196f3;
+  --accent-dim: #2196f333;
+  --terminal-bg: #ffffff;
+  --card-bg: #2196f305;
+  --border-color: #2196f330;
 }
 
 @theme inline {
@@ -14,6 +39,8 @@
   --color-accent: var(--accent);
   --color-accent-dim: var(--accent-dim);
   --color-terminal-bg: var(--terminal-bg);
+  --color-card-bg: var(--card-bg);
+  --color-border: var(--border-color);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
@@ -27,6 +54,7 @@ body {
   font-family: var(--font-mono);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* 网格背景 */
@@ -53,7 +81,7 @@ body {
   background: linear-gradient(
     to bottom,
     transparent 50%,
-    rgba(0, 255, 65, 0.02) 50%
+    var(--accent-dim) 50%
   );
   background-size: 100% 4px;
   pointer-events: none;
@@ -146,4 +174,27 @@ body {
   box-shadow: 
     0 0 10px var(--accent-dim),
     inset 0 0 10px var(--accent-dim);
+}
+
+/* 卡片样式 */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* 链接样式 */
+a {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-shadow: 0 0 8px var(--accent);
 }

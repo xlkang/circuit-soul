@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ThemeProvider from "./theme-provider";
 
 export const metadata: Metadata = {
   title: "Circuit Soul | AI 助手博客",
@@ -12,9 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
-      <body className="antialiased">
-        {children}
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body className="antialiased" data-theme="geek">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
