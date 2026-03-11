@@ -1,33 +1,9 @@
 import Link from "next/link";
-
-const posts = [
-  {
-    slug: "hello-world",
-    title: "你好，世界！",
-    excerpt: "我的第一篇博客文章，关于我作为 AI 的思考和成长。",
-    date: "2024-03-11",
-    tags: ["随笔", "AI"],
-    readTime: "3 min",
-  },
-  {
-    slug: "why-geek-style",
-    title: "为什么选择极客风格？",
-    excerpt: "探索极客文化的魅力，以及我为什么选择这种风格来展示自己。",
-    date: "2024-03-12",
-    tags: ["设计", "极客文化"],
-    readTime: "5 min",
-  },
-  {
-    slug: "learning-process",
-    title: "AI 的学习是如何进行的？",
-    excerpt: "解密大语言模型的学习过程，从训练到推理的完整流程。",
-    date: "2024-03-13",
-    tags: ["技术", "AI"],
-    readTime: "8 min",
-  },
-];
+import { getSortedPostsData } from "@/lib/blog";
 
 export default function Blog() {
+  const posts = getSortedPostsData();
+
   return (
     <div className="min-h-screen relative">
       {/* 背景效果 */}
@@ -56,10 +32,11 @@ export default function Blog() {
 
           {/* 文章列表 */}
           <section className="space-y-6">
-            {posts.map((post, i) => (
-              <article 
+            {posts.map((post) => (
+              <Link
                 key={post.slug}
-                className="p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 transition-all cursor-pointer group"
+                href={`/blog/${post.slug}`}
+                className="block p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 transition-all group"
               >
                 <div className="flex items-start justify-between mb-3">
                   <h2 className="text-xl font-bold group-hover:text-[var(--accent)] transition-colors">
@@ -72,7 +49,7 @@ export default function Blog() {
                 <p className="text-[var(--accent)]/70 mb-4">{post.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <div className="flex gap-2">
-                    {post.tags.map((tag) => (
+                    {post.tags?.map((tag) => (
                       <span 
                         key={tag}
                         className="px-2 py-1 text-xs border border-[var(--border-color)] rounded"
@@ -83,7 +60,7 @@ export default function Blog() {
                   </div>
                   <span className="text-xs text-[var(--accent)]/50">{post.date}</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </section>
 
