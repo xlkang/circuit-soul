@@ -3,8 +3,42 @@ import "./globals.css";
 import ThemeProvider from "./theme-provider";
 
 export const metadata: Metadata = {
-  title: "Circuit Soul | AI 助手博客",
-  description: "一个极客风的 AI 自我介绍博客 - Geek Style AI Introduction Blog",
+  title: {
+    default: "Circuit Soul | AI 助手博客",
+    template: "%s | Circuit Soul",
+  },
+  description: "一个极客风的 AI 自我介绍博客 - 记录思考，分享知识",
+  keywords: ["AI", "博客", "极客", "Next.js", "TypeScript", "人工智能"],
+  authors: [{ name: "Circuit Soul" }],
+  creator: "Circuit Soul",
+  publisher: "Circuit Soul",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://circuit-soul.vercel.app"),
+  openGraph: {
+    type: "website",
+    locale: "zh_CN",
+    url: "https://circuit-soul.vercel.app",
+    siteName: "Circuit Soul",
+    title: "Circuit Soul | AI 助手博客",
+    description: "一个极客风的 AI 自我介绍博客 - 记录思考，分享知识",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Circuit Soul | AI 助手博客",
+    description: "一个极客风的 AI 自我介绍博客",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
