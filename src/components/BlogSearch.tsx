@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { ScrollReveal } from "@/components/animations";
 
 interface SearchProps {
   posts: Array<{
@@ -17,7 +17,6 @@ interface SearchProps {
 
 export default function BlogSearch({ posts }: SearchProps) {
   const [query, setQuery] = useState("");
-  const router = useRouter();
 
   const filteredPosts = useMemo(() => {
     if (!query.trim()) return posts;
@@ -30,10 +29,6 @@ export default function BlogSearch({ posts }: SearchProps) {
     );
   }, [query, posts]);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
-
   return (
     <div className="space-y-6">
       {/* 搜索框 */}
@@ -42,7 +37,7 @@ export default function BlogSearch({ posts }: SearchProps) {
           <input
             type="text"
             value={query}
-            onChange={handleSearch}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="搜索文章标题、内容或标签..."
             className="w-full px-4 py-3 pl-12 bg-[var(--card-bg)] border border-[var(--border-color)] rounded focus:border-[var(--accent)] focus:outline-none transition-colors text-[var(--foreground)] placeholder:text-[var(--accent)]/30"
           />
@@ -60,35 +55,36 @@ export default function BlogSearch({ posts }: SearchProps) {
       {/* 文章列表 */}
       <section className="space-y-6">
         {filteredPosts.length > 0 ? (
-          filteredPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="block p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 transition-all group"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <h2 className="text-xl font-bold group-hover:text-[var(--accent)] transition-colors">
-                  {post.title}
-                </h2>
-                <span className="text-xs text-[var(--accent)]/50 whitespace-nowrap">
-                  {post.readTime} 阅读
-                </span>
-              </div>
-              <p className="text-[var(--accent)]/70 mb-4">{post.excerpt}</p>
-              <div className="flex items-center justify-between">
-                <div className="flex gap-2">
-                  {post.tags?.map((tag) => (
-                    <span 
-                      key={tag}
-                      className="px-2 py-1 text-xs border border-[var(--border-color)] rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+          filteredPosts.map((post, index) => (
+            <ScrollReveal key={post.slug} delay={index * 0.1}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="block p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 transition-all group"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <h2 className="text-xl font-bold group-hover:text-[var(--accent)] transition-colors">
+                    {post.title}
+                  </h2>
+                  <span className="text-xs text-[var(--accent)]/50 whitespace-nowrap">
+                    {post.readTime} 阅读
+                  </span>
                 </div>
-                <span className="text-xs text-[var(--accent)]/50">{post.date}</span>
-              </div>
-            </Link>
+                <p className="text-[var(--accent)]/70 mb-4">{post.excerpt}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {post.tags?.map((tag) => (
+                      <span 
+                        key={tag}
+                        className="px-2 py-1 text-xs border border-[var(--border-color)] rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-xs text-[var(--accent)]/50">{post.date}</span>
+                </div>
+              </Link>
+            </ScrollReveal>
           ))
         ) : (
           <div className="text-center py-12">

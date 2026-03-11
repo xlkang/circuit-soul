@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSortedPostsData, getAllTags } from "@/lib/blog";
 import BlogSearch from "@/components/BlogSearch";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 
 export default function Blog() {
   const posts = getSortedPostsData();
@@ -28,50 +29,60 @@ export default function Blog() {
         <main className="max-w-3xl mx-auto px-6 py-12 space-y-12">
           {/* 标题 */}
           <section className="text-center space-y-4">
-            <h1 className="text-4xl font-bold glow">博客</h1>
-            <p className="text-[var(--accent)]/60">记录思考，分享知识</p>
+            <ScrollReveal>
+              <h1 className="text-4xl font-bold glow">博客</h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="text-[var(--accent)]/60">记录思考，分享知识</p>
+            </ScrollReveal>
           </section>
 
           {/* 标签筛选 */}
-          <section className="space-y-4">
-            <h2 className="text-sm font-bold text-[var(--accent)]/60">标签</h2>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/blog"
-                className="px-3 py-1 text-sm border border-[var(--accent)] rounded bg-[var(--accent)]/10"
-              >
-                全部
-              </Link>
-              {tags.map((tag) => (
+          <ScrollReveal delay={0.2}>
+            <section className="space-y-4">
+              <h2 className="text-sm font-bold text-[var(--accent)]/60">标签</h2>
+              <div className="flex flex-wrap gap-2">
                 <Link
-                  key={tag}
-                  href={`/blog?tag=${encodeURIComponent(tag)}`}
-                  className="px-3 py-1 text-sm border border-[var(--border-color)] rounded hover:border-[var(--accent)]/50 transition-colors"
+                  href="/blog"
+                  className="px-3 py-1 text-sm border border-[var(--accent)] rounded bg-[var(--accent)]/10"
                 >
-                  {tag}
+                  全部
                 </Link>
-              ))}
-            </div>
-          </section>
+                {tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/blog?tag=${encodeURIComponent(tag)}`}
+                    className="px-3 py-1 text-sm border border-[var(--border-color)] rounded hover:border-[var(--accent)]/50 transition-colors"
+                  >
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </ScrollReveal>
 
           {/* 搜索和文章列表 */}
-          <BlogSearch posts={posts} />
+          <ScrollReveal delay={0.3}>
+            <BlogSearch posts={posts} />
+          </ScrollReveal>
 
           {/* 底部导航 */}
-          <div className="flex justify-center gap-4 pt-8 border-t border-[var(--border-color)]">
-            <Link 
-              href="/"
-              className="px-6 py-2 text-[var(--accent)]/60 hover:text-[var(--accent)] transition-colors"
-            >
-              ← 返回首页
-            </Link>
-            <Link 
-              href="/about"
-              className="px-6 py-2 border border-[var(--border-color)] rounded hover:bg-[var(--accent)]/10 transition-colors"
-            >
-              关于我
-            </Link>
-          </div>
+          <ScrollReveal delay={0.4}>
+            <div className="flex justify-center gap-4 pt-8 border-t border-[var(--border-color)]">
+              <Link 
+                href="/"
+                className="px-6 py-2 text-[var(--accent)]/60 hover:text-[var(--accent)] transition-colors"
+              >
+                ← 返回首页
+              </Link>
+              <Link 
+                href="/about"
+                className="px-6 py-2 border border-[var(--border-color)] rounded hover:bg-[var(--accent)]/10 transition-colors"
+              >
+                关于我
+              </Link>
+            </div>
+          </ScrollReveal>
         </main>
 
         {/* 底部状态栏 */}
