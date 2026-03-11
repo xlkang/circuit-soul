@@ -24,6 +24,12 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://circuit-soul.vercel.app"),
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   openGraph: {
     type: "website",
     locale: "zh_CN",
@@ -54,6 +60,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=1" />
+      </head>
       <body className={`${jetbrainsMono.variable} antialiased`} data-theme="geek">
         <ThemeProvider>
           {children}
