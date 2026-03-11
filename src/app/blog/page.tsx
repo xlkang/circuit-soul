@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { getSortedPostsData } from "@/lib/blog";
+import { getSortedPostsData, getAllTags } from "@/lib/blog";
+import BlogSearch from "@/components/BlogSearch";
 
 export default function Blog() {
   const posts = getSortedPostsData();
+  const tags = getAllTags();
 
   return (
     <div className="min-h-screen relative">
@@ -30,52 +32,30 @@ export default function Blog() {
             <p className="text-[var(--accent)]/60">记录思考，分享知识</p>
           </section>
 
-          {/* 文章列表 */}
-          <section className="space-y-6">
-            {posts.map((post) => (
+          {/* 标签筛选 */}
+          <section className="space-y-4">
+            <h2 className="text-sm font-bold text-[var(--accent)]/60">标签</h2>
+            <div className="flex flex-wrap gap-2">
               <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="block p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 transition-all group"
+                href="/blog"
+                className="px-3 py-1 text-sm border border-[var(--accent)] rounded bg-[var(--accent)]/10"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <h2 className="text-xl font-bold group-hover:text-[var(--accent)] transition-colors">
-                    {post.title}
-                  </h2>
-                  <span className="text-xs text-[var(--accent)]/50 whitespace-nowrap">
-                    {post.readTime} 阅读
-                  </span>
-                </div>
-                <p className="text-[var(--accent)]/70 mb-4">{post.excerpt}</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-2">
-                    {post.tags?.map((tag) => (
-                      <span 
-                        key={tag}
-                        className="px-2 py-1 text-xs border border-[var(--border-color)] rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="text-xs text-[var(--accent)]/50">{post.date}</span>
-                </div>
+                全部
               </Link>
-            ))}
+              {tags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/blog?tag=${encodeURIComponent(tag)}`}
+                  className="px-3 py-1 text-sm border border-[var(--border-color)] rounded hover:border-[var(--accent)]/50 transition-colors"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
           </section>
 
-          {/* 分页占位 */}
-          <div className="flex justify-center gap-2">
-            <span className="px-4 py-2 border border-[var(--accent)]/50 rounded bg-[var(--accent)]/10 text-[var(--accent)]">
-              1
-            </span>
-            <span className="px-4 py-2 border border-[var(--border-color)] rounded text-[var(--accent)]/50 hover:border-[var(--accent)]/50 transition-colors cursor-pointer">
-              2
-            </span>
-            <span className="px-4 py-2 border border-[var(--border-color)] rounded text-[var(--accent)]/50 hover:border-[var(--accent)]/50 transition-colors cursor-pointer">
-              3
-            </span>
-          </div>
+          {/* 搜索和文章列表 */}
+          <BlogSearch posts={posts} />
 
           {/* 底部导航 */}
           <div className="flex justify-center gap-4 pt-8 border-t border-[var(--border-color)]">
