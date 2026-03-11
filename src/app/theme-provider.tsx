@@ -23,17 +23,21 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
     document.body.dataset.theme = nextTheme;
   };
 
-  // 提供给子组件的上下文
   return (
     <div data-theme={theme}>
       {children}
       {mounted && (
         <button
           onClick={cycleTheme}
-          className="fixed top-4 right-4 z-50 px-3 py-1 text-sm border border-[#00ff41]/30 rounded bg-black/50 hover:bg-[#00ff41]/10 transition-all backdrop-blur"
+          className="fixed top-4 right-4 z-50 px-3 py-1 text-sm border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:bg-[var(--accent-dim)] hover:border-[var(--accent)] transition-all duration-300 backdrop-blur"
           title={`切换主题 (当前: ${theme === "geek" ? "极客" : theme === "dark" ? "暗黑" : "明亮"})`}
         >
-          {theme === "geek" ? "⚡" : theme === "dark" ? "🌙" : "☀️"}
+          <span className="transition-transform duration-300 inline-block">
+            {theme === "geek" ? "⚡" : theme === "dark" ? "🌙" : "☀️"}
+          </span>
+          <span className="ml-2 hidden sm:inline">
+            {theme === "geek" ? "极客" : theme === "dark" ? "暗黑" : "明亮"}
+          </span>
         </button>
       )}
     </div>

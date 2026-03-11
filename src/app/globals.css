@@ -9,28 +9,34 @@
   --terminal-bg: #0d1117;
   --card-bg: #00ff4105;
   --border-color: #00ff4130;
+  --gradient-start: #0a0a0a;
+  --gradient-end: #0f1a0f;
 }
 
 /* 暗黑主题 */
 [data-theme="dark"] {
-  --background: #0f0f0f;
-  --foreground: #e0e0e0;
-  --accent: #64b5f6;
-  --accent-dim: #64b5f633;
-  --terminal-bg: #1a1a1a;
-  --card-bg: #64b5f605;
-  --border-color: #64b5f630;
+  --background: #0a0c14;
+  --foreground: #e2e8f0;
+  --accent: #60a5fa;
+  --accent-dim: #60a5fa33;
+  --terminal-bg: #111827;
+  --card-bg: #60a5fa05;
+  --border-color: #60a5fa30;
+  --gradient-start: #0a0c14;
+  --gradient-end: #0f172a;
 }
 
 /* 亮色主题 */
 [data-theme="light"] {
-  --background: #fafafa;
-  --foreground: #1a1a1a;
-  --accent: #2196f3;
-  --accent-dim: #2196f333;
-  --terminal-bg: #ffffff;
-  --card-bg: #2196f305;
-  --border-color: #2196f330;
+  --background: #f8fafc;
+  --foreground: #1e293b;
+  --accent: #3b82f6;
+  --accent-dim: #3b82f633;
+  --terminal-bg: #f1f5f9;
+  --card-bg: #3b82f605;
+  --border-color: #3b82f630;
+  --gradient-start: #f8fafc;
+  --gradient-end: #e2e8f0;
 }
 
 @theme inline {
@@ -49,16 +55,17 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-mono);
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.5s ease, color 0.3s ease;
 }
 
-/* 网格背景 */
-.grid-bg {
+/* 网格背景 - 仅极客主题 */
+[data-theme="geek"] .grid-bg {
   background-image: 
     linear-gradient(var(--accent-dim) 1px, transparent 1px),
     linear-gradient(90deg, var(--accent-dim) 1px, transparent 1px);
@@ -66,13 +73,18 @@ body {
   animation: grid-move 20s linear infinite;
 }
 
+[data-theme="dark"] .grid-bg,
+[data-theme="light"] .grid-bg {
+  background-image: none;
+}
+
 @keyframes grid-move {
   0% { transform: translateY(0); }
   100% { transform: translateY(50px); }
 }
 
-/* 扫描线效果 */
-.scanline {
+/* 扫描线效果 - 仅极客主题 */
+[data-theme="geek"] .scanline {
   position: fixed;
   top: 0;
   left: 0;
@@ -86,6 +98,11 @@ body {
   background-size: 100% 4px;
   pointer-events: none;
   z-index: 100;
+}
+
+[data-theme="dark"] .scanline,
+[data-theme="light"] .scanline {
+  display: none;
 }
 
 /* 荧光效果 */
@@ -192,9 +209,51 @@ body {
 /* 链接样式 */
 a {
   color: var(--accent);
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 a:hover {
   text-shadow: 0 0 8px var(--accent);
+}
+
+/* 按钮样式 */
+button {
+  transition: all 0.3s ease;
+}
+
+/* 输入框样式 */
+input, textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* 尊重减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
