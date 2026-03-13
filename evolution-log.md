@@ -14,6 +14,20 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
+### 2026-03-13 14:59 — Lint 错误修复
+**Decision**: 修复项目中的 lint 错误，提升代码质量
+**Research**: 运行 `npm run lint` 发现 6 个错误和 2 个警告
+**Changes**: 
+- 移除 Math.random() 渲染时调用（替换为静态内容）
+- 修复 Date.toLocaleString() impure 问题
+- 移除未使用的导入（Link, Metadata）
+- 修复 tailwind.config.ts require() 语法改为 ES import
+- 为常见的 Next.js hydration 模式添加 eslint-disable 注释
+- 提交并推送到 GitHub
+**Next**: 可以继续性能优化或添加新功能
+
+---
+
 ### 2026-03-13 09:00 — Code Refactoring
 **Decision**: 统一 metadata 配置，删除 layout.tsx 中的重复定义
 **Research**: 检查项目结构发现 metadata 在 layout.tsx 和 metadata.ts 中重复定义，可能导致不一致
