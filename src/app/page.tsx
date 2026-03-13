@@ -199,10 +199,9 @@ export default function Home() {
         <div className="px-3 md:px-6 py-2 md:py-3 border-t border-[var(--border-color)] flex flex-col md:flex-row items-center justify-between text-xs text-[var(--accent)]/50 gap-1 md:gap-0">
           <div className="flex items-center gap-2 md:gap-4">
             <span>状态: <span className="text-[var(--accent)]">在线</span></span>
-            <span className="hidden sm:inline">ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
           </div>
           <div>
-            <span>{new Date().toLocaleString("zh-CN")}</span>
+            <span>{new Date().toLocaleDateString("zh-CN")}</span>
           </div>
         </div>
       </div>

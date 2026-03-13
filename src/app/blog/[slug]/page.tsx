@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getPostData, getAllPostSlugs } from "@/lib/blog";
 import BlogPostClient from "./BlogPostClient";
 

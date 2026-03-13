@@ -9,6 +9,7 @@ export default function ThemeBackground() {
 
   useEffect(() => {
     const saved = (localStorage.getItem("circuit-soul-theme") as Theme) || "geek";
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(saved);
 
     const handleStorageChange = () => {
