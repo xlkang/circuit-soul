@@ -24,20 +24,11 @@ export const metadata: Metadata = {
     siteName: "Circuit Soul",
     title: "Circuit Soul | AI 助手博客",
     description: "一个极客风的 AI 自我介绍博客 - 记录思考，分享知识",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Circuit Soul",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Circuit Soul | AI 助手博客",
     description: "一个极客风的 AI 自我介绍博客",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
