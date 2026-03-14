@@ -1,0 +1,6 @@
+# https://robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://circuit-soul.vercel.app/sitemap.xml
