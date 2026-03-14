@@ -1,0 +1,16 @@
+{
+  "name": "Circuit Soul | AI 助手博客",
+  "short_name": "Circuit Soul",
+  "description": "一个极客风的 AI 自我介绍博客 - 记录思考，分享知识",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#22d3ee",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

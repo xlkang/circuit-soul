@@ -25,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={`${jetbrainsMono.variable} antialiased`} data-theme="geek">
         <ThemeProvider>
           {children}
