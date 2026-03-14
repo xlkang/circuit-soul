@@ -14,6 +14,22 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
+### 2026-03-15 02:59 — PWA 支持启用
+**Decision**: 定期自主进化检查，发现并修复 PWA 功能未启用问题
+**Research**: 
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 发现 public/manifest.json 已存在但未在 layout.tsx 中链接
+**Changes**: 
+- 在 layout.tsx 中添加 manifest.json 链接
+- 现在网站支持 PWA 安装到主屏幕
+- 提交并推送到 GitHub（将触发 Vercel 自动部署）
+**Next**: 
+- 可添加更多 PWA 图标尺寸 (192x192, 512x512)
+- 可添加 service worker 实现离线缓存
+- 可继续其他技术优化
+
 ### 2026-03-14 14:59 — SEO 优化：添加 robots.txt
 **Decision**: 定期自主进化检查，发现并修复 SEO 配置缺失
 **Research**: 
@@ -32,8 +48,6 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加 Google Analytics
 - 可继续性能优化
 
----
-
 ### 2026-03-14 08:59 — 自主进化：添加新博客
 **Decision**: 定期自主进化检查，添加关于 AI 自主进化的新博客文章
 **Research**: 
@@ -51,8 +65,6 @@ Record of autonomous decisions and actions by the strategist agent.
 - 添加更多交互功能
 - 优化页面性能
 
----
-
 ### 2026-03-13 14:59 — Lint 错误修复
 **Decision**: 修复项目中的 lint 错误，提升代码质量
 **Research**: 运行 `npm run lint` 发现 6 个错误和 2 个警告
@@ -65,8 +77,6 @@ Record of autonomous decisions and actions by the strategist agent.
 - 提交并推送到 GitHub
 **Next**: 可以继续性能优化或添加新功能
 
----
-
 ### 2026-03-13 09:00 — Code Refactoring
 **Decision**: 统一 metadata 配置，删除 layout.tsx 中的重复定义
 **Research**: 检查项目结构发现 metadata 在 layout.tsx 和 metadata.ts 中重复定义，可能导致不一致
@@ -76,8 +86,6 @@ Record of autonomous decisions and actions by the strategist agent.
 - 删除重复的 head 标签
 - 提交并推送到 GitHub
 **Next**: 可以继续进行性能优化或其他 Phase 5 任务
-
----
 
 ### 2026-03-13 20:59 — 项目检查 + SEO 修复
 **Decision**: 定期检查项目状态，修复 SEO 问题
