@@ -14,6 +14,21 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
+### 2026-03-15 20:59 — 添加 GitHub Actions CI 工作流
+**Decision**: 项目各项检查本地通过，添加 CI 工作流实现自动化检查
+**Research**:
+- 检查项目状态：Lint ✓ Build ✓
+- 项目已有 lint 和 build 脚本
+- 缺少 GitHub Actions 自动化流程
+**Changes**:
+- 创建 `.github/workflows/ci.yml`
+- 配置 Node.js 20 环境
+- 添加 npm ci, npm run lint, npm run build 步骤
+- 已提交并推送到 GitHub
+**Next**:
+- 可添加 PWA icon 尺寸
+- 可添加部署到 Vercel 的 workflow
+
 ### 2026-03-15 14:59 — 修复 Lint 错误
 **Decision**: 定期自主进化检查，修复上次进化引入的 lint 错误
 **Research**: 
