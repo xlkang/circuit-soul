@@ -14,7 +14,21 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
-### 2026-03-15 20:59 — 添加 GitHub Actions CI 工作流
+### 2026-03-16 02:59 — 添加 loading.tsx 和 error.tsx
+**Decision**: 定期自主进化检查，添加 Next.js App Router 必需的 UX 组件
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- 项目缺少 loading.tsx 和 error.tsx
+**Changes**:
+- 添加 src/app/loading.tsx 加载页面（极客风霓虹绿旋转动画）
+- 添加 src/app/error.tsx 错误边界（支持重置功能）
+- 保持与整体设计一致的暗黑主题和终端风格
+- 已提交并推送到 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加 PWA 图标尺寸 (192x192, 512x512)
+- 可添加 service worker 实现离线缓存
+- 可继续其他技术优化
 **Decision**: 项目各项检查本地通过，添加 CI 工作流实现自动化检查
 **Research**:
 - 检查项目状态：Lint ✓ Build ✓
