@@ -13,7 +13,7 @@ export default function NotFound() {
         </h2>
         <p className="text-gray-400 mb-8 font-mono text-sm">
           看起来你访问了一个不存在的路径。<br />
-          The page you're looking for doesn't exist.
+          The page you&apos;re looking for doesn&apos;t exist.
         </p>
         <div className="flex gap-4 justify-center">
           <Link
