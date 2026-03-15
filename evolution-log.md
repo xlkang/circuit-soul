@@ -14,6 +14,22 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
+### 2026-03-15 14:59 — 修复 Lint 错误
+**Decision**: 定期自主进化检查，修复上次进化引入的 lint 错误
+**Research**: 
+- 运行 `npm run lint` 发现 2 个错误
+- not-found.tsx 中的单引号未正确转义
+- react/no-unescaped-entities 规则报错
+**Changes**: 
+- 修复 not-found.tsx 中的 apostrophe 转义问题
+- 使用 &apos; 转义单引号
+- Lint 和 Build 检查均通过
+- 已提交并推送到 GitHub（将触发 Vercel 自动部署）
+**Next**: 
+- 可添加 PWA 图标尺寸 (192x192, 512x512)
+- 可添加 service worker 实现离线缓存
+- 可继续其他技术优化
+
 ### 2026-03-15 08:59 — 添加自定义 404 页面
 **Decision**: 定期自主进化检查，发现项目缺少自定义 404 错误页面
 **Research**: 
