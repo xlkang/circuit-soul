@@ -3,6 +3,7 @@ import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import ThemeProvider from "./theme-provider";
 import { metadata } from "./metadata";
+import ServiceWorkerRegistration from "@/components/service-worker-registration";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${jetbrainsMono.variable} antialiased`} data-theme="geek">
+        <ServiceWorkerRegistration />
         <ThemeProvider>
           <ViewTransitions>
             {children}
