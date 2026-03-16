@@ -1,4 +1,5 @@
 import { JetBrains_Mono } from "next/font/google";
+import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import ThemeProvider from "./theme-provider";
 import { metadata } from "./metadata";
@@ -30,7 +31,9 @@ export default function RootLayout({
       </head>
       <body className={`${jetbrainsMono.variable} antialiased`} data-theme="geek">
         <ThemeProvider>
-          {children}
+          <ViewTransitions>
+            {children}
+          </ViewTransitions>
         </ThemeProvider>
       </body>
     </html>
