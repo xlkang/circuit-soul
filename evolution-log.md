@@ -60,6 +60,22 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加 Google Analytics
 - 可继续其他技术优化
 
+### 2026-03-17 14:59 — SEO 优化：博客文章 JSON-LD 结构化数据
+**Decision**: 定期自主进化检查，为博客文章添加 JSON-LD 结构化数据提升搜索引擎理解
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- 项目已有网站级别 JSON-LD，但博客文章缺少 Article 结构化数据
+**Changes**:
+- 在 src/app/blog/[slug]/page.tsx 添加 BlogPosting schema.org 结构化数据
+- 包含 headline, description, datePublished, author, url, keywords 字段
+- 搜索引擎可以更好地理解文章内容并可能在搜索结果中展示丰富摘要
+- 提交并推送到 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加 Google Analytics
+- 可添加网站分析
+- 可继续其他技术优化
+
 ### 2026-03-17 08:59 — SEO 优化：robots.txt 和 JSON-LD
 **Decision**: 定期自主进化检查，添加 SEO 优化提升搜索引擎收录
 **Research**:
