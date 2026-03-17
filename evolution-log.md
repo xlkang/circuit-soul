@@ -62,7 +62,24 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
-### 2026-03-16 02:59 — 添加 loading.tsx 和 error.tsx
+### 2026-03-17 02:59 — Service Worker 离线缓存
+**Decision**: 定期自主进化检查，添加 Service Worker 实现离线缓存功能
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 项目已有 PWA 支持但缺少离线缓存
+**Changes**:
+- 创建 public/sw.js Service Worker 文件
+- 实现静态资源缓存策略（Cache First + Network Fallback）
+- 创建 src/components/service-worker-registration.tsx 客户端组件
+- 在 layout.tsx 中注册 Service Worker
+- 网站现在支持离线访问
+- 提交并推送到 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加 Google Analytics
+- 可添加更多高级缓存策略
+- 可继续其他技术优化
 **Decision**: 定期自主进化检查，添加 Next.js App Router 必需的 UX 组件
 **Research**:
 - Lint 检查通过 ✓

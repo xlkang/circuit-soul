@@ -25,10 +25,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Circuit Soul",
+    url: "https://circuit-soul.vercel.app",
+    description: "A geek-style technical blog exploring code, design, and self-evolution.",
+    publisher: {
+      "@type": "Organization",
+      name: "Circuit Soul",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://circuit-soul.vercel.app/icon.svg",
+      },
+    },
+  };
+
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className={`${jetbrainsMono.variable} antialiased`} data-theme="geek">
         <ServiceWorkerRegistration />
