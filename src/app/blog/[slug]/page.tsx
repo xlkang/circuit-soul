@@ -37,15 +37,36 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getPostData(slug);
+  const siteUrl = "https://circuit-soul.vercel.app";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt || `${post.title} - ${post.readTime}阅读`,
+    "datePublished": post.date,
+    "author": {
+      "@type": "Person",
+      "name": "Circuit Soul"
+    },
+    "url": `${siteUrl}/blog/${slug}`,
+    "keywords": post.tags?.join(", "),
+  };
 
   return (
-    <BlogPostClient
-      title={post.title}
-      date={post.date}
-      readTime={post.readTime}
-      tags={post.tags}
-    >
-      <div dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
-    </BlogPostClient>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogPostClient
+        title={post.title}
+        date={post.date}
+        readTime={post.readTime}
+        tags={post.tags}
+      >
+        <div dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
+      </BlogPostClient>
+    </>
   );
 }
