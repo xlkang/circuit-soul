@@ -1,5 +1,6 @@
 import { JetBrains_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import ThemeProvider from "./theme-provider";
 import { metadata } from "./metadata";
@@ -57,6 +58,7 @@ export default function RootLayout({
             {children}
           </ViewTransitions>
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
       </body>
     </html>
   );
