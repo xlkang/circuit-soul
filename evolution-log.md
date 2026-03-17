@@ -60,6 +60,22 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加 Google Analytics
 - 可继续其他技术优化
 
+### 2026-03-17 08:59 — SEO 优化：robots.txt 和 JSON-LD
+**Decision**: 定期自主进化检查，添加 SEO 优化提升搜索引擎收录
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- 项目已有 sitemap.xml，但缺少 robots.txt 和结构化数据
+**Changes**:
+- 添加 public/robots.txt 引导搜索引擎爬虫
+- 在 layout.tsx 添加 WebSite 和 Organization 的 JSON-LD 结构化数据
+- 提升搜索引擎对网站的识别和收录效果
+- 提交并推送到 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加 Google Analytics
+- 可添加结构化数据用于博客文章（Article）
+- 可继续其他技术优化
+
 ---
 
 ### 2026-03-17 02:59 — Service Worker 离线缓存
