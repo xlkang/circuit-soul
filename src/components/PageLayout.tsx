@@ -99,8 +99,8 @@ export default function PageLayout({ children, currentPath = "/" }: PageLayoutPr
           )}
         </AnimatePresence>
 
-        {/* 主内容 */}
-        <main className="flex-1">
+        {/* 主内容 - 无障碍：id 用于 skip-link 跳转 */}
+        <main id="main-content" className="flex-1">
           {children}
         </main>
 

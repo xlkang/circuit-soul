@@ -46,8 +46,8 @@ export default function Home() {
       <div className="fixed inset-0 grid-bg opacity-30" />
       <div className="fixed inset-0 scanline" />
       
-      {/* 主内容 */}
-      <div className="relative z-10 min-h-screen flex flex-col">
+      {/* 主内容 - 无障碍：id 用于 skip-link 跳转 */}
+      <div id="main-content" className="relative z-10 min-h-screen flex flex-col">
         {/* 顶部导航 */}
         <nav className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-[var(--border-color)]">
           <div className="flex items-center gap-2">

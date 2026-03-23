@@ -46,12 +46,21 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className={`${jetbrainsMono.variable} antialiased`} data-theme="geek">
+        {/* Skip to main content - accessibility improvement */}
+        <a
+          href="#main-content"
+          className="skip-link"
+        >
+          跳转到主要内容
+        </a>
         <ServiceWorkerRegistration />
         <ThemeProvider>
           <ViewTransitions>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ReactNode, useEffect, useState } from "react";
 
 interface PageTransitionProps {
@@ -9,6 +9,7 @@ interface PageTransitionProps {
 
 export default function PageTransition({ children }: PageTransitionProps) {
   const [mounted, setMounted] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -16,6 +17,11 @@ export default function PageTransition({ children }: PageTransitionProps) {
   }, []);
 
   if (!mounted) {
+    return <>{children}</>;
+  }
+
+  // 尊重用户的减少动画偏好：跳过过渡动画
+  if (prefersReducedMotion) {
     return <>{children}</>;
   }
 
