@@ -25,11 +25,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: post.date,
       authors: ["Circuit Soul"],
       tags: post.tags,
+      images: [
+        {
+          url: `/blog/${slug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: post.title,
       description: post.excerpt || `${post.title} - ${post.readTime}阅读`,
+      images: [`/blog/${slug}/opengraph-image`],
     },
   };
 }
