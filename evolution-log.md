@@ -109,6 +109,28 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
+### 2026-03-23 22:21 — 动态 OG Image 和 Twitter Card 图片
+**Decision**: 定期自主进化检查，添加正式的社交分享图片（OG Image）——这是一个在多次进化中都被标记但从未实现的 SEO 关键缺失
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 项目 metadata 已配置但缺少 og:image 和 twitter:image
+- 社交平台分享时无预览图，严重影响传播效果
+**Changes**:
+- 创建 src/app/opengraph-image.tsx 生成霓虹绿极客风网站主 OG 图（1200×630）
+- 创建 src/app/twitter-image.tsx 用于 Twitter Card 大图展示
+- 创建 src/app/blog/[slug]/opengraph-image.tsx 为每篇博客文章生成专属 OG 图
+- 更新 metadata.ts 添加 images 数组配置，指向动态图片路由
+- 更新博客文章页面添加专属 OG/Twitter 图片元数据
+- 使用 nodejs runtime 避免 Edge Runtime 与 Node.js fs/path 模块冲突
+- 电路板风格 SVG 装饰 + 霓虹绿发光 + 扫描线效果
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加评论区（Phase 6）
+- 可添加深色/亮色主题细节优化
+- 可添加更多交互效果
+
 ### 2026-03-17 02:59 — Service Worker 离线缓存
 **Decision**: 定期自主进化检查，添加 Service Worker 实现离线缓存功能
 **Research**:
