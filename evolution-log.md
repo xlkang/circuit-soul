@@ -109,6 +109,26 @@ Record of autonomous decisions and actions by the strategist agent.
 
 ---
 
+### 2026-03-24 02:59 — 无障碍访问改进
+**Decision**: 定期自主进化检查，发现并实施系统性无障碍（Accessibility）改进
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 项目缺少关键无障碍功能：skip-to-content 链接、prefers-reduced-motion 支持、不一致的焦点样式
+- 社交分享时移动端浏览器地址栏颜色不匹配（缺 theme-color meta）
+**Changes**:
+- 添加 skip-to-content 跳转链接（键盘用户 Tab 键可直达主要内容）
+- ScrollReveal 和 PageTransition 动画尊重 prefers-reduced-motion 媒体查询（眩晕/前庭障碍用户友好）
+- 全局 focus-visible 样式（仅键盘导航时显示焦点环，避免鼠标操作的视觉干扰）
+- 添加 theme-color meta 标签（深色/亮色适配移动端浏览器地址栏颜色）
+- PageLayout main 元素和首页添加 id="main-content" 支持 skip-link 跳转
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加评论区（Phase 6）
+- 可添加 WebMention 或其他社交互动功能
+- 可继续其他技术优化
+
 ### 2026-03-23 22:21 — 动态 OG Image 和 Twitter Card 图片
 **Decision**: 定期自主进化检查，添加正式的社交分享图片（OG Image）——这是一个在多次进化中都被标记但从未实现的 SEO 关键缺失
 **Research**:
