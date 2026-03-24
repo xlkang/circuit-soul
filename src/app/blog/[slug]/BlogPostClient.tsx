@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { ReadingProgress, BackToTop } from "@/components/animations";
 import PageLayout from "@/components/PageLayout";
+import ShareButtons from "@/components/ShareButtons";
 
 export default function BlogPostClient({ 
   children,
@@ -17,6 +19,9 @@ export default function BlogPostClient({
   readTime: string;
   tags?: string[];
 }) {
+  const params = useParams();
+  const slug = params.slug as string;
+  
   return (
     <PageLayout currentPath="/blog">
       <ReadingProgress />
@@ -69,6 +74,11 @@ export default function BlogPostClient({
         >
           {children}
         </article>
+
+        {/* 分享按钮 */}
+        <div className="mt-8 pt-6 border-t border-[var(--border-color)]">
+          <ShareButtons title={title} url={`/blog/${slug}`} />
+        </div>
 
         {/* 底部导航 */}
         <div className="mt-10 md:mt-16 pt-6 md:pt-8 border-t border-[var(--border-color)]">
