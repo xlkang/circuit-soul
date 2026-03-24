@@ -12,6 +12,25 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-03-24 08:59 — 自动计算博客阅读时间
+**Decision**: 定期自主进化检查，发现博客阅读时间(readTime)需要手动设置且不准确的问题，实施自动计算
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 发现 readTime 在每个 markdown 文件中手动设置，计算不智能
+- 中英文混合内容无法正确估算
+**Changes**:
+- 添加 calculateReadTime 函数，中文按 300 字/分钟、英文按 200 词/分钟智能估算
+- 修改 getSortedPostsData 和 getPostData 函数，自动计算阅读时间
+- 保留手动设置的 readTime 作为备用（向后兼容）
+- 作者无需手动计算每篇文章的阅读时间
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加评论区（Phase 6）
+- 可添加 WebMention 或其他社交互动功能
+- 可继续其他技术优化
+
 ### 2026-03-16 14:59 — PWA 图标优化：添加专用应用图标
 **Decision**: 定期自主进化检查，为 PWA 添加专用的应用图标
 **Research**:
