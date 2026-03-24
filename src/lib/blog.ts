@@ -6,6 +6,24 @@ import html from "remark-html";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
+/**
+ * Calculate reading time based on content
+ * Average reading speed: 300 words/min for Chinese, 200 words/min for English
+ */
+function calculateReadTime(content: string): string {
+  // Remove frontmatter if present
+  const textContent = content.replace(/^---[\s\S]*?---/, "");
+  
+  // Count Chinese characters and English words
+  const chineseChars = (textContent.match(/[\u4e00-\u9fa5]/g) || []).length;
+  const englishWords = (textContent.match(/[a-zA-Z]+/g) || []).length;
+  
+  // Calculate minutes: Chinese ~300 chars/min, English ~200 words/min
+  const minutes = Math.ceil(chineseChars / 300 + englishWords / 200);
+  
+  return `${Math.max(1, minutes)} min`;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -33,9 +51,16 @@ export function getSortedPostsData(): BlogPost[] {
       // 使用 gray-matter 解析元数据
       const matterResult = matter(fileContents);
       
+      // Auto-calculate readTime from content if not specified
+      const rawReadTime = (matterResult.data as Record<string, unknown>).readTime;
+      const readTime = rawReadTime 
+        ? String(rawReadTime) 
+        : calculateReadTime(matterResult.content);
+      
       return {
         slug,
-        ...(matterResult.data as Omit<BlogPost, "slug">),
+        readTime,
+        ...(matterResult.data as Omit<BlogPost, "slug" | "readTime">),
       };
     });
   
@@ -76,10 +101,17 @@ export async function getPostData(slug: string): Promise<BlogPost> {
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
   
+  // Auto-calculate readTime from content if not specified
+  const rawReadTime = (matterResult.data as Record<string, unknown>).readTime;
+  const readTime = rawReadTime 
+    ? String(rawReadTime) 
+    : calculateReadTime(matterResult.content);
+  
   return {
     slug,
     contentHtml,
-    ...(matterResult.data as Omit<BlogPost, "slug" | "contentHtml">),
+    readTime,
+    ...(matterResult.data as Omit<BlogPost, "slug" | "contentHtml" | "readTime">),
   };
 }
 
