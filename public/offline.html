@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>离线 - Circuit Soul</title>
+  <style>
+    :root {
+      --background: #0a0a0a;
+      --foreground: #00ff41;
+      --accent: #00ff41;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --background: #f8fafc;
+        --foreground: #1e293b;
+        --accent: #3b82f6;
+      }
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px var(--accent);
+    }
+    p {
+      line-height: 1.6;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      background: var(--accent);
+      color: var(--background);
+    }
+    .terminal-line {
+      text-align: left;
+      background: rgba(0,0,0,0.3);
+      padding: 1rem;
+      border: 1px solid var(--accent);
+      margin-top: 2rem;
+      font-size: 0.875rem;
+    }
+    .prompt {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📡</div>
+    <h1>信号丢失</h1>
+    <p>你当前处于离线状态。已缓存的页面仍然可以访问。</p>
+    <a href="/">返回首页</a>
+    <div class="terminal-line">
+      <span class="prompt">$</span> connection lost --reconnect<br>
+      <span style="opacity: 0.5">> 正在等待网络恢复...</span>
+    </div>
+  </div>
+</body>
+</html>

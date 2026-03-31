@@ -10,6 +10,7 @@ const STATIC_ASSETS = [
   '/manifest.json',
   '/icon.svg',
   '/favicon.svg',
+  '/offline.html',
 ];
 
 declare const self: ServiceWorkerGlobalScope;
@@ -51,7 +52,13 @@ self.addEventListener('fetch', (event) => {
           }
           return response;
         })
-        .catch(() => cached);
+        .catch(() => {
+          // If fetch fails and we have no cache, serve offline page
+          if (event.request.mode === 'navigate') {
+            return caches.match('/offline.html');
+          }
+          return null;
+        });
 
       return cached || fetchPromise;
     })
