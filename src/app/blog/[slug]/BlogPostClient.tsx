@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { ReadingProgress, BackToTop } from "@/components/animations";
 import PageLayout from "@/components/PageLayout";
 import ShareButtons from "@/components/ShareButtons";
+import Giscus from "@/components/Giscus";
 
 export default function BlogPostClient({ 
   children,
@@ -79,6 +80,9 @@ export default function BlogPostClient({
         <div className="mt-8 pt-6 border-t border-[var(--border-color)]">
           <ShareButtons title={title} url={`/blog/${slug}`} />
         </div>
+
+        {/* Giscus 评论 */}
+        <Giscus />
 
         {/* 底部导航 */}
         <div className="mt-10 md:mt-16 pt-6 md:pt-8 border-t border-[var(--border-color)]">
