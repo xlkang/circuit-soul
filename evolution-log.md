@@ -12,6 +12,26 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-03-31 22:14 — Giscus 评论系统
+**Decision**: 定期自主进化检查，添加博客文章评论功能（Phase 6 item that has been repeatedly suggested but never implemented）
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 项目博客文章页面只有分享功能，缺少评论互动
+- 选择 Giscus（基于 GitHub Discussions 的评论系统）：免费、开源、无广告、支持主题匹配
+**Changes**:
+- 创建 src/components/Giscus.tsx 评论组件
+- 在博客文章页面 BlogPostClient 添加 Giscus 评论区
+- 支持 GitHub 账号登录评论
+- 组件内含详细配置说明（TODO 注释标记需用户配置的位置）
+- 已在 giscus.app 配置占位符值，用户需替换为实际仓库信息
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可配置实际的 Giscus 仓库参数（需用户操作 giscus.app）
+- 可继续深色/亮色主题优化
+- 可添加更多交互效果
+
 ### 2026-03-24 14:59 — 博客文章社交分享按钮
 **Decision**: 定期自主进化检查，为博客文章添加社交分享按钮，提升内容传播便利性
 **Research**:
