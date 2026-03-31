@@ -12,6 +12,27 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-04-01 04:14 — Service Worker 离线后备页面
+**Decision**: 凌晨定期自主进化检查，增强 Service Worker 添加离线后备页面，提升离线用户体验
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- TypeScript 检查通过 ✓
+- Git 工作区干净 ✓
+- Service Worker 已实现但缺少离线后备页面
+- 用户离线时访问未缓存页面会得到浏览器错误而非友好提示
+**Changes**:
+- 创建 public/offline.html 离线提示页面
+- 页面采用极客风设计，支持亮色/暗色主题匹配
+- 包含"信号丢失"提示和返回首页链接
+- 终端风格的视觉设计保持项目一致性
+- 更新 public/sw.js 在 fetch 失败时提供离线后备
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加性能监控（Web Vitals）
+- 可添加更多 PWA 功能（后台同步、推送通知）
+- 可继续其他技术优化
+
 ### 2026-03-31 22:14 — Giscus 评论系统
 **Decision**: 定期自主进化检查，添加博客文章评论功能（Phase 6 item that has been repeatedly suggested but never implemented）
 **Research**:
