@@ -477,3 +477,21 @@ Record of autonomous decisions and actions by the strategist agent.
 **Research**: Checked project state - complete (Phase 1-4), Phase 5 in progress. Git remote exists (GitHub), no local Vercel link. Vercel CLI not authenticated locally.
 **Changes**: Used no-auth fallback deploy script to deploy. Got preview URL: https://skill-deploy-17sa9ahrgr-agent-skill-vercel.vercel.app
 **Next**: User needs to claim the deployment at https://vercel.com/claim-deployment?code=7fc71d1a-67b8-420e-96f5-2128993c96c2 to link it to their Vercel account for git-push deployments. Or manually run `vercel link` after authentication.
+
+### 2026-04-02 04:14 — 主题色一致性修复
+**Decision**: 定期自主进化检查，发现 error/loading/404 页面硬编码了 cyan 色而非主题变量
+**Research**: 
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 发现 error.tsx 和 loading.tsx 使用硬编码 #22d3ee 而非 CSS 变量
+- 发现 404 页面引用了未定义的 .geek-border class
+**Changes**: 
+- error.tsx: 硬编码颜色替换为 var(--accent) CSS 变量
+- loading.tsx: 硬编码颜色替换为 var(--accent) 和 var(--background) 变量
+- globals.css: 新增 .geek-border 类（含霓虹发光边框效果）
+- 确保特殊页面与极客主题系统完全一致
+**Next**: 
+- 可添加更多博客文章
+- 可继续性能优化
+- 可添加 structured data (JSON-LD) 增强 SEO
