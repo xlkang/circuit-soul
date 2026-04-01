@@ -29,7 +29,7 @@ export default function Error({
         )}
         <button
           onClick={reset}
-          className="w-full py-2 px-4 bg-[#22d3ee]/10 hover:bg-[#22d3ee]/20 text-[#22d3ee] border border-[#22d3ee]/30 rounded font-mono text-sm transition-colors"
+          className="w-full py-2 px-4 bg-[var(--accent)]/10 hover:bg-[var(--accent)]/20 text-[var(--accent)] border border-[var(--accent)]/30 rounded font-mono text-sm transition-colors"
         >
           Try again
         </button>

@@ -554,3 +554,11 @@ button:focus-visible,
     font-size: 15px;
   }
 }
+
+/* Geek 风格边框 */
+.geek-border {
+  border: 1px solid var(--accent);
+  box-shadow: 
+    0 0 10px var(--accent)/20,
+    inset 0 0 10px var(--accent)/10;
+}
