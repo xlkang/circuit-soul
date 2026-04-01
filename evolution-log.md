@@ -12,6 +12,29 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-04-01 10:14 — Web Vitals 性能监控
+**Decision**: 定期自主进化检查，添加 Web Vitals 性能监控以跟踪网站核心性能指标
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- TypeScript 检查通过 ✓
+- Git 工作区干净 ✓
+- 项目缺少性能监控功能，用户无法了解网站性能表现
+- Web Vitals 是 Google 推出的用户体验衡量标准，包含 CLS/FCP/INP/LCP/TTFB 五项核心指标
+- web-vitals v5 已将 FID 替换为 INP (Interaction to Next Paint)
+**Changes**:
+- 创建 src/components/WebVitals.tsx 性能监控组件
+- 跟踪 Core Web Vitals 五项指标：CLS、FCP、INP、LCP、TTFB
+- 生产环境浏览器控制台输出霓虹绿风格格式化日志
+- 支持配置 NEXT_PUBLIC_WEB_VITALS_ENDPOINT 向分析服务发送数据
+- 使用动态 import 避免影响首屏加载性能
+- 安装 web-vitals npm 包
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加真实 GitHub 统计到项目页面
+- 可优化深色/亮色主题细节
+- 可继续其他技术优化
+
 ### 2026-04-01 04:14 — Service Worker 离线后备页面
 **Decision**: 凌晨定期自主进化检查，增强 Service Worker 添加离线后备页面，提升离线用户体验
 **Research**:
