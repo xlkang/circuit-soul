@@ -12,6 +12,33 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-04-01 22:14 — 更多交互效果（Phase 6）
+**Decision**: 定期自主进化检查，完成 Phase 6 最后一项「更多交互效果」，提升用户体验
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- SPEC.md Phase 6 显示「更多交互效果」为 pending 项
+- 原博客/项目卡片仅有颜色变化，缺少缩放反馈
+- 原技能条无滚动触发动画，体验较生硬
+- 原按钮缺少按压反馈，触感不够真实
+**Changes**:
+- globals.css 添加卡片悬停缩放效果 (hover:scale-[1.02] + hover:shadow-lg)
+- globals.css 添加按钮按压反馈 (active:scale-95 + 0.1s transition)
+- 创建 src/components/animations/AnimatedSkillBar.tsx 组件
+  - 使用 framer-motion 的 useInView 检测滚动
+  - 技能条宽度从 0 动画到目标值
+  - 支持 prefers-reduced-motion 尊重用户偏好
+- 更新 about 页面使用 AnimatedSkillBar 组件
+- 博客/项目卡片添加 hover:scale-[1.02] hover:shadow-lg 效果
+- 理念卡片添加 hover:border glow + hover:scale-[1.02] 效果
+- 技能区和理念区添加 ScrollReveal 包裹动画
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可接入 GitHub API 显示真实贡献统计
+- 可添加页面切换过渡动画
+- 可继续其他技术优化
+
 ### 2026-04-01 16:14 — 深色/亮色主题优化（Phase 6）
 **Decision**: 定期自主进化检查，执行 SPEC.md Phase 6 待办项「深色/亮色主题优化」，提升 dark/light 主题完成度
 **Research**:
