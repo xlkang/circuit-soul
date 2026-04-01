@@ -5,6 +5,7 @@ import "./globals.css";
 import ThemeProvider from "./theme-provider";
 import { metadata } from "./metadata";
 import ServiceWorkerRegistration from "@/components/service-worker-registration";
+import WebVitals from "@/components/WebVitals";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default function RootLayout({
             {children}
           </ViewTransitions>
         </ThemeProvider>
+        <WebVitals />
         <GoogleAnalytics gaId="G-XXXXXXXXXX" />
       </body>
     </html>
