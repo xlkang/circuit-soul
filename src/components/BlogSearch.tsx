@@ -59,7 +59,7 @@ export default function BlogSearch({ posts }: SearchProps) {
             <ScrollReveal key={post.slug} delay={index * 0.1}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="block p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 transition-all group"
+                className="block p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 hover:scale-[1.02] hover:shadow-lg transition-all group"
               >
                 <div className="flex items-start justify-between mb-3">
                   <h2 className="text-xl font-bold group-hover:text-[var(--accent)] transition-colors">

@@ -355,6 +355,38 @@ body {
 .card:hover {
   border-color: var(--accent);
   background: var(--accent-dim);
+  transform: scale(1.02);
+}
+
+/* 按钮按压反馈 */
+button:active:not(:disabled),
+.btn-geek:active,
+button.btn-geek:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
+
+/* 博客/项目卡片悬停缩放 */
+article.card-hover,
+a[href*="blog"] .card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+article.card-hover:hover {
+  transform: scale(1.02);
+}
+
+/* 链接按钮化悬停效果 */
+a.text-btn {
+  transition: all 0.2s ease;
+}
+
+a.text-btn:hover {
+  transform: scale(1.05);
+}
+
+a.text-btn:active {
+  transform: scale(0.95);
 }
 
 /* 链接样式 */

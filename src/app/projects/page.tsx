@@ -50,7 +50,7 @@ export default function Projects() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 md:p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 transition-all group"
+              className="p-4 md:p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 hover:scale-[1.02] hover:shadow-lg transition-all group"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 md:mb-3 gap-2 md:gap-0">
                 <h3 className="text-base md:text-lg font-bold group-hover:text-[var(--accent)] transition-colors">

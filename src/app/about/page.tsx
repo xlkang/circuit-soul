@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
+import { AnimatedSkillBar, ScrollReveal } from "@/components/animations";
 
 export default function About() {
   const skills = [
@@ -65,23 +66,20 @@ export default function About() {
 
         {/* 技能进度条 */}
         <section className="space-y-4 md:space-y-6">
-          <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
-            <span className="text-[var(--accent)]">#</span> 技能树
-          </h2>
+          <ScrollReveal>
+            <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+              <span className="text-[var(--accent)]">#</span> 技能树
+            </h2>
+          </ScrollReveal>
           <div className="space-y-3 md:space-y-4">
-            {skills.map((skill) => (
-              <div key={skill.name} className="space-y-1.5 md:space-y-2">
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span>{skill.name}</span>
-                  <span className="text-[var(--accent)]/60">{skill.level}%</span>
-                </div>
-                <div className="h-1.5 md:h-2 bg-[var(--accent)]/10 rounded overflow-hidden">
-                  <div 
-                    className="h-full bg-[var(--accent)] rounded transition-all duration-1000"
-                    style={{ width: `${skill.level}%` }}
-                  />
-                </div>
-              </div>
+            {skills.map((skill, index) => (
+              <ScrollReveal key={skill.name} delay={index * 0.1}>
+                <AnimatedSkillBar 
+                  name={skill.name} 
+                  level={skill.level} 
+                  delay={index * 0.1}
+                />
+              </ScrollReveal>
             ))}
           </div>
         </section>
@@ -109,17 +107,20 @@ export default function About() {
 
         {/* 理念 */}
         <section className="space-y-4 md:space-y-6">
-          <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
-            <span className="text-[var(--accent)]">#</span> 理念
-          </h2>
+          <ScrollReveal>
+            <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+              <span className="text-[var(--accent)]">#</span> 理念
+            </h2>
+          </ScrollReveal>
           <div className="grid grid-cols-2 gap-2 md:gap-3">
             {philosophy.map((item, i) => (
-              <div 
-                key={i}
-                className="p-3 md:p-4 text-center text-sm md:text-base border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:bg-[var(--accent)]/10 transition-colors"
-              >
-                <span className="text-[var(--accent)]">{item}</span>
-              </div>
+              <ScrollReveal key={item} delay={i * 0.1}>
+                <div 
+                  className="p-3 md:p-4 text-center text-sm md:text-base border border-[var(--border-color)] rounded bg-[var(--card-bg)] hover:bg-[var(--accent)]/10 hover:border-[var(--accent)]/40 hover:shadow-md hover:scale-[1.02] transition-all cursor-default"
+                >
+                  <span className="text-[var(--accent)]">{item}</span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </section>
