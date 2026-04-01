@@ -12,6 +12,31 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-04-01 16:14 — 深色/亮色主题优化（Phase 6）
+**Decision**: 定期自主进化检查，执行 SPEC.md Phase 6 待办项「深色/亮色主题优化」，提升 dark/light 主题完成度
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- SPEC.md Phase 6 明确标记「深色/亮色主题优化」为 pending 项
+- 原 dark/light 主题 CSS 变量仅包含基础颜色定义，缺少阴影层级、字重、辅助色等细节
+- 原 glow 荧光效果在 dark/light 模式下仍以霓虹绿显示，与非极客主题视觉不协调
+**Changes**:
+- 增强暗黑/亮色主题 CSS 变量：添加 shadow-sm/md/lg、heading-weight、text-secondary、surface-elevated、divider
+- 暗黑主题：精细阴影系统 + 暗角色调文字（#94a3b8）
+- 亮色主题：柔和阴影 + 蓝色分隔线 + 更协调的次要文字色（#64748b）
+- 卡片样式：多级阴影（shadow-sm → shadow-lg）+ backdrop-filter blur + 平滑过渡动画
+- 标题层级：添加 letter-spacing (-0.02em) 和匹配字重
+- 添加深色/亮色主题专属样式：blockquote、hr、ol/ul 标记、code 块
+- 滚动条精细化：深色主题蓝调透明色、亮色主题蓝调实色
+- 亮色主题网格背景改为蓝色调点状纹理（rgba(59,130,246,0.15)）
+- glow 类在深色/亮色主题下自动禁用 text-shadow + 改为 font-weight:700
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可接入 GitHub API 显示真实贡献统计（项目页面占位符）
+- 可添加深色/亮色主题专属动画（如浮动元素在 light 主题下表现不同）
+- 可继续其他 Phase 6 未完成项
+
 ### 2026-04-01 10:14 — Web Vitals 性能监控
 **Decision**: 定期自主进化检查，添加 Web Vitals 性能监控以跟踪网站核心性能指标
 **Research**:
