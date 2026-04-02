@@ -69,7 +69,7 @@ export default function RootLayout({
           </ViewTransitions>
         </ThemeProvider>
         <WebVitals />
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   );
