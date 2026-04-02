@@ -34,19 +34,24 @@ export default function BlogSearch({ posts }: SearchProps) {
       {/* 搜索框 */}
       <section>
         <div className="relative">
+          <label htmlFor="blog-search-input" className="sr-only">
+            搜索文章标题、内容或标签
+          </label>
           <input
+            id="blog-search-input"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="搜索文章标题、内容或标签..."
             className="w-full px-4 py-3 pl-12 bg-[var(--card-bg)] border border-[var(--border-color)] rounded focus:border-[var(--accent)] focus:outline-none transition-colors text-[var(--foreground)] placeholder:text-[var(--accent)]/30"
+            aria-label="搜索文章标题、内容或标签"
           />
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--accent)]/50">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--accent)]/50" aria-hidden="true">
             🔍
           </span>
         </div>
         {query && (
-          <p className="mt-2 text-sm text-[var(--accent)]/50">
+          <p className="mt-2 text-sm text-[var(--accent)]/50" role="status" aria-live="polite">
             找到 {filteredPosts.length} 篇文章
           </p>
         )}

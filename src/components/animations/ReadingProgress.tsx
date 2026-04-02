@@ -18,6 +18,8 @@ export default function ReadingProgress() {
         backgroundColor: "var(--accent)",
         boxShadow: "0 0 10px var(--accent)"
       }}
+      aria-hidden="true"
+      role="presentation"
     />
   );
 }
