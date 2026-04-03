@@ -609,3 +609,24 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加 Google Analytics
 - 可继续性能优化
 - 可添加更多博客文章
+
+### 2026-04-04 04:14 — 接入 GitHub REST API 显示真实贡献统计
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。projects 页面的贡献统计使用占位符 `--` 已存在多轮，替换为真实 GitHub 数据。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- GitHub REST API v3 对公共数据无需认证（60 req/hr），适合此场景
+- 使用 Promise.all 并行请求用户信息和仓库列表，减少等待时间
+- next: { revalidate: 3600 } 实现 1 小时增量静态重生成（ISR）
+- TypeScript strict mode 下 `any[]` 和 `repo: any` 需替换为具体类型
+**Changes**:
+- 新增 src/lib/github.ts: GitHubStats 接口 + fetchGitHubStats() 函数
+- 更新 src/app/projects/page.tsx: 转为 async Server Component，动态拉取 @xlkang 的 GitHub 数据
+- 贡献统计展示：开源项目数、Followers、Stars 总数
+- API 失败时优雅降级显示 `--` 占位符
+- 添加 GitHub 个人主页链接
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加页面切换过渡动画
+- 可继续 Phase 5 其他未完成项（性能优化）
