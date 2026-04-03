@@ -12,6 +12,26 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-04-03 22:14 — 修复 404 页面主题不响应问题
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。发现 404 页面使用硬编码颜色 `#0a0a0a` 和 `#00ff41`，不响应主题切换（极客/暗黑/亮色），与其他页面不一致。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 原 not-found.tsx 使用绝对背景色和主题色，在暗黑/亮色主题下显示为极客风格
+- 其他页面均使用 PageLayout + CSS 变量系统保持主题一致性
+**Changes**:
+- 重构 not-found.tsx：移除硬编码背景色，使用 CSS 变量
+- 使用 ThemeBackground 组件保持背景一致性
+- 使用 card 类获得主题感阴影和边框
+- 按钮使用 var(--accent) 和 var(--background) 变量
+- 文字使用 var(--text-secondary) 或 var(--foreground)
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加 contact form 真实后端处理
+- 可添加博客文章排序功能（按时间/阅读量）
+- 可继续 Phase 5 其他未完成项
+
 ### 2026-04-03 16:14 — 页面级 SEO metadata 优化
 **Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 18 小时。为 about、projects、contact、blog 页面添加独立 page-specific metadata，提升各页面在搜索引擎中的可见性。
 **Research**:
