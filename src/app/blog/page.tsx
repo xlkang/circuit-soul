@@ -7,9 +7,35 @@ import PageLayout from "@/components/PageLayout";
 export default function Blog() {
   const posts = getSortedPostsData();
   const tags = getAllTags();
+  const siteUrl = "https://circuit-soul.vercel.app";
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Circuit Soul 博客",
+    "description": "记录思考，分享知识",
+    "url": `${siteUrl}/blog`,
+    "author": {
+      "@type": "Person",
+      "name": "Circuit Soul",
+      "url": siteUrl,
+    },
+    "blogPost": posts.map((post) => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.excerpt || `${post.title} - ${post.readTime}阅读`,
+      "datePublished": post.date,
+      "url": `${siteUrl}/blog/${post.slug}`,
+      "keywords": post.tags?.join(", "),
+    })),
+  };
 
   return (
     <PageLayout currentPath="/blog">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <main className="max-w-3xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-8 md:space-y-12">
         {/* 标题 */}
         <section className="text-center space-y-3 md:space-y-4">

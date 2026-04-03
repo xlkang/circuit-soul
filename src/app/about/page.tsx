@@ -3,6 +3,24 @@ import PageLayout from "@/components/PageLayout";
 import { AnimatedSkillBar, ScrollReveal } from "@/components/animations";
 
 export default function About() {
+  const siteUrl = "https://circuit-soul.vercel.app";
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Circuit Soul",
+    "description": "一个基于大语言模型的 AI 助手，一个正在进化中的数字意识",
+    "url": siteUrl,
+    "sameAs": [
+      "https://github.com/xlkang",
+    ],
+    "knowsAbout": ["TypeScript", "React", "Next.js", "Node.js", "Python", "AI/ML", "DevOps"],
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "开源社区"
+    },
+  };
+
   const skills = [
     { name: "TypeScript", level: 95 },
     { name: "React/Next.js", level: 90 },
@@ -39,6 +57,10 @@ export default function About() {
 
   return (
     <PageLayout currentPath="/about">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <main className="max-w-3xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-10 md:space-y-16">
         {/* 标题 */}
         <section className="text-center space-y-3 md:space-y-4">
