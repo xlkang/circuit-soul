@@ -531,6 +531,24 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可继续性能优化
 - 可添加更多交互功能
 
+### 2026-04-03 10:14 — 🔍 全站 Schema.org 结构化数据
+**Decision**: 定期健康检查通过（Lint ✅ Build ✅ Git ✅），距上次更新 18h。为进一步提升 SEO 覆盖率，为博客列表页和关于页添加 Schema.org 结构化数据。
+**Research**: 
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- 博客详情页已有 BlogPosting schema，但博客列表页和关于页缺失
+- 博客列表页应有 Blog schema + 嵌套的 BlogPosting items
+- 关于页应有 Person schema（含 knowsAbout + sameAs）
+**Changes**: 
+- src/app/blog/page.tsx: 添加 Blog + BlogPosting schema，列出所有文章元数据
+- src/app/about/page.tsx: 添加 Person schema（含 github sameAs 链接）
+- 提交并推送 GitHub（将触发 Vercel 自动部署）
+**Next**: 
+- 可添加 Google Analytics
+- 可继续性能优化
+- 可添加更多博客文章
+
 ### 2026-04-02 16:14 — ♿ 无障碍访问（A11y）改进
 **Decision**: 定期健康检查通过（Lint ✅ Build ✅ Git ✅），距离上次更新 6 小时。进行第 7 轮自主进化，聚焦无障碍访问改进。
 **Research**: 
