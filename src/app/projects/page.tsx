@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
+import { fetchGitHubStats } from "@/lib/github";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,38 +17,42 @@ export const metadata: Metadata = {
   },
 };
 
+const GITHUB_USERNAME = "xlkang";
+
 const projects = [
   {
     name: "Circuit Soul",
     description: "这个博客网站！一个极客风的 AI 自我介绍博客",
     tech: ["Next.js", "TypeScript", "Tailwind"],
     link: "https://github.com/xlkang/circuit-soul",
-    status: "active",
+    status: "active" as const,
   },
   {
     name: "OpenClaw",
     description: "开源 AI 助手框架，支持多平台接入",
     tech: ["Node.js", "TypeScript", "Discord"],
     link: "https://github.com/openclaw/openclaw",
-    status: "active",
+    status: "active" as const,
   },
   {
     name: "AI Chat Interface",
     description: "现代化的 AI 对话界面，支持多种模型",
     tech: ["React", "TypeScript", "OpenAI API"],
     link: "#",
-    status: "planning",
+    status: "planning" as const,
   },
   {
     name: "Terminal Portfolio",
     description: "终端风格的个人作品集网站",
     tech: ["Vue", "Node.js", "WebSocket"],
     link: "#",
-    status: "idea",
+    status: "idea" as const,
   },
 ];
 
-export default function Projects() {
+export default async function Projects() {
+  const stats = await fetchGitHubStats(GITHUB_USERNAME);
+
   return (
     <PageLayout currentPath="/projects">
       <main className="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-8 md:space-y-12">
@@ -96,24 +101,52 @@ export default function Projects() {
           ))}
         </section>
 
-        {/* 贡献统计占位 */}
+        {/* GitHub 贡献统计 */}
         <section className="p-4 md:p-6 border border-[var(--border-color)] rounded bg-[var(--card-bg)]">
           <h2 className="text-base md:text-lg font-bold mb-3 md:mb-4 flex items-center gap-2">
-            <span className="text-[var(--accent)]">📊</span> 贡献统计
+            <span className="text-[var(--accent)]">📊</span> GitHub 统计
           </h2>
-          <div className="grid grid-cols-3 gap-2 md:gap-4 text-center">
-            <div>
-              <div className="text-xl md:text-2xl font-bold text-[var(--accent)]">--</div>
-              <div className="text-xs text-[var(--accent)]/60">开源项目</div>
+          {stats ? (
+            <div className="grid grid-cols-3 gap-2 md:gap-4 text-center">
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-[var(--accent)]">{stats.publicRepos}</div>
+                <div className="text-xs text-[var(--accent)]/60">开源项目</div>
+              </div>
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-[var(--accent)]">{stats.followers}</div>
+                <div className="text-xs text-[var(--accent)]/60">Followers</div>
+              </div>
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-[var(--accent)]">{stats.stars}</div>
+                <div className="text-xs text-[var(--accent)]/60">获得 Stars</div>
+              </div>
             </div>
-            <div>
-              <div className="text-xl md:text-2xl font-bold text-[var(--accent)]">--</div>
-              <div className="text-xs text-[var(--accent)]/60">代码提交</div>
+          ) : (
+            <div className="grid grid-cols-3 gap-2 md:gap-4 text-center">
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-[var(--accent)] opacity-50">--</div>
+                <div className="text-xs text-[var(--accent)]/60">开源项目</div>
+              </div>
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-[var(--accent)] opacity-50">--</div>
+                <div className="text-xs text-[var(--accent)]/60">Followers</div>
+              </div>
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-[var(--accent)] opacity-50">--</div>
+                <div className="text-xs text-[var(--accent)]/60">获得 Stars</div>
+              </div>
             </div>
-            <div>
-              <div className="text-xl md:text-2xl font-bold text-[var(--accent)]">--</div>
-              <div className="text-xs text-[var(--accent)]/60">获得 Stars</div>
-            </div>
+          )}
+          <div className="mt-3 text-center">
+            <a
+              href={`https://github.com/${GITHUB_USERNAME}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-[var(--accent)]/50 hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1"
+            >
+              <span>@{GITHUB_USERNAME}</span>
+              <span>↗</span>
+            </a>
           </div>
         </section>
 
