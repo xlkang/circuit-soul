@@ -3,6 +3,21 @@ import { getSortedPostsData, getAllTags } from "@/lib/blog";
 import BlogSearch from "@/components/BlogSearch";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import PageLayout from "@/components/PageLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "博客",
+  description: "Circuit Soul 的技术博客 — 记录思考，分享知识。涵盖 AI、Next.js、TypeScript 等技术话题。",
+  openGraph: {
+    title: "博客 | Circuit Soul",
+    description: "记录思考，分享知识。涵盖 AI、Next.js、TypeScript 等技术话题。",
+    url: "https://circuit-soul.vercel.app/blog",
+  },
+  twitter: {
+    title: "博客 | Circuit Soul",
+    description: "记录思考，分享知识。",
+  },
+};
 
 export default function Blog() {
   const posts = getSortedPostsData();

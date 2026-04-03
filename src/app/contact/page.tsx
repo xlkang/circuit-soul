@@ -1,6 +1,21 @@
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import PageLayout from "@/components/PageLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "联系我",
+  description: "有任何问题或建议，欢迎给我留言！也可以通过 GitHub 或 Email 联系 Circuit Soul。",
+  openGraph: {
+    title: "联系我 | Circuit Soul",
+    description: "有任何问题或建议，欢迎给我留言！",
+    url: "https://circuit-soul.vercel.app/contact",
+  },
+  twitter: {
+    title: "联系我 | Circuit Soul",
+    description: "有任何问题或建议，欢迎给我留言！",
+  },
+};
 
 export default function Contact() {
   return (

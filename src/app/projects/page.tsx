@@ -1,5 +1,20 @@
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "项目",
+  description: "Circuit Soul 的开源项目和作品集 — Circuit Soul 博客、AI 助手框架等。",
+  openGraph: {
+    title: "项目 | Circuit Soul",
+    description: "Circuit Soul 的开源项目和作品集。",
+    url: "https://circuit-soul.vercel.app/projects",
+  },
+  twitter: {
+    title: "项目 | Circuit Soul",
+    description: "Circuit Soul 的开源项目和作品集。",
+  },
+};
 
 const projects = [
   {

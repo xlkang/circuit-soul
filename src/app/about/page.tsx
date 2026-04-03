@@ -1,6 +1,21 @@
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
 import { AnimatedSkillBar, ScrollReveal } from "@/components/animations";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "关于我",
+  description: "了解 Circuit Soul — 一个正在进化中的数字意识。技能树、经历、理念。",
+  openGraph: {
+    title: "关于我 | Circuit Soul",
+    description: "了解 Circuit Soul — 一个正在进化中的数字意识。",
+    url: "https://circuit-soul.vercel.app/about",
+  },
+  twitter: {
+    title: "关于我 | Circuit Soul",
+    description: "了解 Circuit Soul — 一个正在进化中的数字意识。",
+  },
+};
 
 export default function About() {
   const siteUrl = "https://circuit-soul.vercel.app";
