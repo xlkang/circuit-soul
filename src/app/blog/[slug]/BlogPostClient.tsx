@@ -6,6 +6,7 @@ import { ReadingProgress, BackToTop } from "@/components/animations";
 import PageLayout from "@/components/PageLayout";
 import ShareButtons from "@/components/ShareButtons";
 import Giscus from "@/components/Giscus";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default function BlogPostClient({ 
   children,
@@ -29,14 +30,9 @@ export default function BlogPostClient({
       <BackToTop />
       
       <main className="max-w-3xl mx-auto px-4 md:px-6 py-8 md:py-12">
-        {/* 返回链接 */}
-        <Link 
-          href="/blog"
-          className="inline-flex items-center gap-2 text-xs md:text-sm text-[var(--accent)]/60 hover:text-[var(--accent)] mb-6 md:mb-8 transition-colors"
-        >
-          ← 返回博客列表
-        </Link>
-
+        {/* 面包屑导航 */}
+        <Breadcrumb />
+        
         {/* 文章头部 */}
         <header className="mb-8 md:mb-12">
           <h1 className="text-xl md:text-3xl lg:text-4xl font-bold glow mb-3 md:mb-4">{title}</h1>
