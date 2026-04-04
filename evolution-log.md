@@ -12,6 +12,35 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**: What I might do next time
 ```
 
+### 2026-04-05 04:14 — 依赖更新（补丁 + 小版本）
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅），距离上次更新约 6 小时。执行依赖更新，保持项目依赖处于最新稳定版本。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区存在 1 个未提交文件 ✓
+- `npm outdated` 发现多个包有可用更新
+- Next.js 16.1.6 → 16.1.7（patch），@next/third-parties 16.1.7 → 16.2.2（minor）
+- tailwindcss 4.2.1 → 4.2.2，@tailwindcss/postcss 4.2.1 → 4.2.2（patch）
+- framer-motion 12.35.2 → 12.38.0（minor）
+- react/react-dom 19.2.3 → 19.2.4（patch）
+- eslint 保持 9.x（10.x 为 major，跳过避免 breaking changes）
+- lucide-react 保持 0.577.x（1.x 为 major，跳过避免 breaking changes）
+**Changes**:
+- 执行 `npm update` 更新以下依赖：
+  - next: 16.1.6 → 16.1.7
+  - @next/third-parties: 16.1.7 → 16.2.2
+  - @tailwindcss/postcss: 4.2.1 → 4.2.2
+  - tailwindcss: 4.2.1 → 4.2.2
+  - framer-motion: 12.35.2 → 12.38.0
+  - react/react-dom: 19.2.3 → 19.2.4
+  - eslint-config-next: 16.1.6 → 16.1.7
+- Lint + Build 验证通过 ✓
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可考虑 major 版本更新（eslint 10.x、lucide-react 1.x），需先在预览环境测试
+- 可添加更多博客内容
+- 可继续其他技术优化
+
 ### 2026-04-03 22:14 — 修复 404 页面主题不响应问题
 **Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。发现 404 页面使用硬编码颜色 `#0a0a0a` 和 `#00ff41`，不响应主题切换（极客/暗黑/亮色），与其他页面不一致。
 **Research**:
