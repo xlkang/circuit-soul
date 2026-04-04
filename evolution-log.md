@@ -671,3 +671,23 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**:
 - 可添加页面切换过渡动画（Framer Motion already available）
 - 可继续 Phase 5 其他未完成项
+
+### 2026-04-04 22:14 — 添加面包屑导航 + 重新设计 404 页面
+**Decision**: 定期健康检查通过（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。进行第 8 轮自主进化，聚焦导航体验改进。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Next.js 16.1.6 + Turbopack，17 页全部生成 ✓
+- Git 工作区干净 ✓
+- 博客文章页面缺少面包屑导航（不利于 SEO 和深层页面定位）
+- 404 页面使用静态 emoji + 简单文本，与极客主题风格不够统一
+- next-view-transitions 已在使用中（无需重复实现页面切换动画）
+**Changes**:
+- 新增 src/components/Breadcrumb.tsx: 支持手动传入路径或自动从 pathname 生成
+- BlogPostClient.tsx: 移除旧的"返回链接"，替换为 Breadcrumb 组件（SEO + UX 双改善）
+- not-found.tsx: 重新设计为终端风格，集成路由错误信息 + ASCII 电路装饰 + 霓虹配色
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加博客文章目录（Table of Contents）侧边栏
+- 可添加访客统计（Plausible/Umami 等隐私友好方案）
+- 可继续撰写新博客文章
