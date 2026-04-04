@@ -70,16 +70,18 @@
 - [x] RSS 订阅
 - [x] 站点地图
 
-### Phase 5: 部署 & 优化 (进行中)
-- [ ] Vercel 部署
-- [ ] 性能优化
-- [ ] SEO 元数据
-- [ ] 评论区 (可选)
+### Phase 5: 部署 & 优化 ✅
+- [x] Vercel 部署
+- [x] 性能优化（包体积优化 + 博客 ISR 缓存 + Web Vitals 监控）
+- [x] SEO 元数据（页面级 metadata + JSON-LD 结构化数据 + robots.txt + sitemap.xml + OG Image）
+- [x] 评论区 (Giscus)
 
 ### Phase 6: 高级功能 ✅
 - [x] 评论系统
-- [x] 深色/亮色主题优化
-- [x] 更多交互效果 (卡片悬停缩放/技能条滚动动画/按钮按压反馈)
+- [x] 深色/亮色主题优化（阴影层级/字重/辅助色/滚动条）
+- [x] 更多交互效果（卡片悬停缩放/技能条滚动动画/按钮按压反馈/View Transitions）
+- [x] PWA 支持（Service Worker 离线缓存 + 自定义图标 + manifest）
+- [x] 无障碍访问（skip-to-content/aria/focus-visible/theme-color）
 
 ## 6. 内容
 
@@ -87,6 +89,8 @@
 - 你好，世界！
 - 为什么选择极客风格？
 - AI 的学习是如何进行的？
+- AI 的自主进化：自我反思与改进
+- Circuit Soul 的自主进化机制
 
 ## 7. 开发规范
 
@@ -99,4 +103,4 @@
 ---
 
 *文档状态: 活跃更新*
-*最后更新: 2026-03-11*
+*最后更新: 2026-04-04*
