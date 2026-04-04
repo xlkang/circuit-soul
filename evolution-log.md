@@ -630,3 +630,23 @@ Record of autonomous decisions and actions by the strategist agent.
 **Next**:
 - 可添加页面切换过渡动画
 - 可继续 Phase 5 其他未完成项（性能优化）
+
+### 2026-04-04 10:14 — Next.js 性能优化：包优化 + 博客 ISR 缓存
+**Decision**: 定期健康检查通过（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。进行 Phase 5 性能优化。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓
+- Git 工作区干净 ✓
+- next.config.ts 极度精简，无任何优化配置
+- 博客页面为纯静态（无 revalidate），内容更新需重新构建
+- `getPostData` 重复调用 `calculateReadTime`（注释已优化）
+**Changes**:
+- next.config.ts: 添加 `experimental.optimizePackageImports` 优化 lucide-react/framer-motion/gray-matter/remark 等包
+- next.config.ts: 启用 `images.formats: ['image/avif', 'image/webp']` 优先格式
+- blog/page.tsx: 添加 `export const revalidate = 3600`（1小时 ISR）
+- blog/[slug]/page.tsx: 添加 `export const revalidate = 3600`（1小时 ISR）
+- Build 输出确认：`/blog` 和 `/blog/[slug]` 均显示 `1h revalidate`
+- 已提交并推送 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加页面切换过渡动画（Framer Motion already available）
+- 可继续 Phase 5 其他未完成项
