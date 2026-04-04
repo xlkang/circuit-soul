@@ -1,3 +1,6 @@
+// ISR: 每小时增量静态重生成
+export const revalidate = 3600;
+
 import { getPostData, getAllPostSlugs } from "@/lib/blog";
 import BlogPostClient from "./BlogPostClient";
 import { Metadata } from "next";

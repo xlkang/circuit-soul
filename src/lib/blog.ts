@@ -101,7 +101,7 @@ export async function getPostData(slug: string): Promise<BlogPost> {
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
   
-  // Auto-calculate readTime from content if not specified
+  // Reuse readTime from frontmatter if specified, otherwise calculate once
   const rawReadTime = (matterResult.data as Record<string, unknown>).readTime;
   const readTime = rawReadTime 
     ? String(rawReadTime) 

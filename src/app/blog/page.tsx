@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   },
 };
 
+// ISR: 每小时增量静态重生成
+export const revalidate = 3600;
+
 export default function Blog() {
   const posts = getSortedPostsData();
   const tags = getAllTags();
