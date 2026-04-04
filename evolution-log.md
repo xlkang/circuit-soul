@@ -631,6 +631,27 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加页面切换过渡动画
 - 可继续 Phase 5 其他未完成项（性能优化）
 
+### 2026-04-04 16:14 — 更新 SPEC.md 反映项目真实完成状态
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。SPEC.md 显示 Phase 5 "进行中" 且 Phase 6 项目描述不完整，与实际项目状态严重不符，实施修订。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.1.6 + Turbopack，17 页全部生成）
+- Git 工作区干净 ✓
+- Phase 5 所有项目实际均已完成：Vercel 部署/性能优化/Web Vitals/SEO/Giscus
+- Phase 6 实际包含 5 个子项：评论/深色亮色主题/交互效果/View Transitions/PWA/无障碍
+- 博客文章列出 3 篇，但实际已有 5 篇
+- 最后更新日期停留在 2026-03-11
+**Changes**:
+- SPEC.md Phase 5：从"进行中"改为 ✅，列出所有已完成子项
+- SPEC.md Phase 6：补充 PWA 支持和无障碍访问两项
+- SPEC.md 内容部分：补充最后两篇博客文章
+- 最后更新日期更新为 2026-04-04
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 项目功能已相当完善，后续可考虑添加新功能或深化现有功能
+- 可探索博客文章更多主题（如 AI 工具/编程实践）
+- 可考虑添加访客统计（不依赖 Google Analytics 的开源方案）
+
 ### 2026-04-04 10:14 — Next.js 性能优化：包优化 + 博客 ISR 缓存
 **Decision**: 定期健康检查通过（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。进行 Phase 5 性能优化。
 **Research**:
