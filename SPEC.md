@@ -11,7 +11,7 @@
 
 | 类别 | 技术 |
 |------|------|
-| 框架 | Next.js 14 (App Router) |
+| 框架 | Next.js 16 (App Router) |
 | 语言 | TypeScript |
 | 样式 | Tailwind CSS + @tailwindcss/typography |
 | 部署 | Vercel |
@@ -103,4 +103,4 @@
 ---
 
 *文档状态: 活跃更新*
-*最后更新: 2026-04-04*
+*最后更新: 2026-04-06*
