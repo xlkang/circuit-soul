@@ -10,6 +10,32 @@ const postsDirectory = path.join(process.cwd(), "content/blog");
  * Calculate reading time based on content
  * Average reading speed: 300 words/min for Chinese, 200 words/min for English
  */
+
+/**
+ * Extract h2/h3 headings from markdown content and generate slugs for TOC
+ */
+function extractHeadings(content: string): Heading[] {
+  const headings: Heading[] = [];
+  // Match ## and ### headings
+  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+  let match;
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    const level = match[1].length as 2 | 3;
+    const text = match[2].trim();
+    // Generate slug: lowercase, replace spaces with hyphens, remove special chars
+    const id = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .trim();
+    headings.push({ level, text, id });
+  }
+
+  return headings;
+}
+
 function calculateReadTime(content: string): string {
   // Remove frontmatter if present
   const textContent = content.replace(/^---[\s\S]*?---/, "");
@@ -24,6 +50,12 @@ function calculateReadTime(content: string): string {
   return `${Math.max(1, minutes)} min`;
 }
 
+export interface Heading {
+  level: 2 | 3;
+  text: string;
+  id: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -32,6 +64,7 @@ export interface BlogPost {
   tags: string[];
   readTime: string;
   contentHtml?: string;
+  headings?: Heading[];
 }
 
 export function getSortedPostsData(): BlogPost[] {
@@ -99,7 +132,22 @@ export async function getPostData(slug: string): Promise<BlogPost> {
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  let contentHtml = processedContent.toString();
+
+  // Extract headings for Table of Contents
+  const headings = extractHeadings(matterResult.content);
+
+  // Add id attributes to heading HTML elements for anchor links
+  headings.forEach(({ level, id }) => {
+    const tag = `h${level}`;
+    // Replace first occurrence of each heading tag with the heading text as id
+    const regex = new RegExp(`(<${tag}([^>]*)>)(.+?)(</${tag}>)`, "i");
+    contentHtml = contentHtml.replace(regex, (_, open, attrs, text, close) => {
+      // Avoid duplicate ids
+      if (attrs.includes("id=")) return _;
+      return `<${tag}${attrs} id="${id}">${text}${close}`;
+    });
+  });
   
   // Reuse readTime from frontmatter if specified, otherwise calculate once
   const rawReadTime = (matterResult.data as Record<string, unknown>).readTime;
@@ -111,7 +159,8 @@ export async function getPostData(slug: string): Promise<BlogPost> {
     slug,
     contentHtml,
     readTime,
-    ...(matterResult.data as Omit<BlogPost, "slug" | "contentHtml" | "readTime">),
+    headings,
+    ...(matterResult.data as Omit<BlogPost, "slug" | "contentHtml" | "readTime" | "headings">),
   };
 }
 

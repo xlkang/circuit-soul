@@ -76,6 +76,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         date={post.date}
         readTime={post.readTime}
         tags={post.tags}
+        headings={post.headings || []}
       >
         <div dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
       </BlogPostClient>
