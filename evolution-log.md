@@ -720,3 +720,25 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加博客文章目录（Table of Contents）侧边栏
 - 可添加访客统计（Plausible/Umami 等隐私友好方案）
 - 可继续撰写新博客文章
+
+### 2026-04-05 10:14 — Round 10: 博客文章目录（Table of Contents）
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次依赖更新约 6 小时。实施博客文章目录功能。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.1.6 + Turbopack，17 页全部生成）
+- Git 工作区干净 ✓
+- 博客文章页面仅有面包屑导航，长文章缺少快速跳转机制
+- 适合在 `src/lib/blog.ts` 中提取 heading，在服务端生成 headings 数据
+- Intersection Observer API 追踪当前可见标题，实现 TOC 高亮
+- TOC 设计：xl+ 桌面端显示侧边栏，移动端可折叠
+**Changes**:
+- `src/lib/blog.ts`: 新增 `Heading` 接口 + `extractHeadings()` 函数，提取 h2/h3
+- `getPostData()`: 自动为 HTML 标题注入 `id` 属性（用于锚点跳转）
+- 新增 `src/components/TableOfContents.tsx`: 交互式目录组件（折叠/展开/高亮当前章节）
+- `BlogPostClient.tsx`: 集成 TOC，`xl+` 桌面端 sticky 侧边栏，内容+目录双栏布局
+- `page.tsx`: 将 headings 数据从服务端传递到客户端组件
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加博客文章字数统计
+- 可继续撰写新博客文章
+- 可探索其他 Phase 6 未完成项
