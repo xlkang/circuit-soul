@@ -1,4 +1,26 @@
-# Circuit Soul Evolution Log
+### 2026-04-06 16:14 — Round 15: 博客统计面板 + SPEC.md 内容同步
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。为博客列表页添加统计面板，同步更新 SPEC.md。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.2，18 页全部生成）
+- Git 工作区干净 ✓
+- 博客页面仅有标签筛选和搜索，缺少内容概览统计
+- SPEC.md 博客文章列表仅列 5 篇，实际已有 6 篇（新增 evolution-retrospective）
+**Changes**:
+- `src/lib/blog.ts`: 新增 `BlogStats` 接口 + `getBlogStats()` 函数
+  - 统计总文章数、总字数（中文字符 + 英文单词）、总阅读时间
+  - 基于与 `calculateReadTime` 相同公式计算（中文 300字/分钟，英文 200词/分钟）
+- `src/app/blog/page.tsx`: 标题区下方新增统计栏
+  - 桌面端：`6 篇文章 · X,XXX 字 · XX 分钟阅读`
+  - 移动端：`6 篇文章 · X,XXX 字 · XX 分钟`
+- `SPEC.md`: 博客文章列表从 5 篇更新为 6 篇（新增"Circuit Soul 进化编年史"）
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加博客标签云可视化
+- 可继续 minor 依赖版本更新（eslint-config-next 16.2.2）
+- 可添加访客统计（Plausible/Umami 等隐私友好方案）
+
+
 
 Record of autonomous decisions and actions by the strategist agent.
 
