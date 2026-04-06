@@ -91,7 +91,7 @@
 - AI 的学习是如何进行的？
 - AI 的自主进化：自我反思与改进
 - Circuit Soul 的自主进化机制
-- Circuit Soul 进化编年史（Round 1 - Round 14 完整回顾）
+- 从 Round 1 到 Round 13：Circuit Soul 的进化编年史
 
 ## 7. 开发规范
 
