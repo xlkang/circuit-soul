@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSortedPostsData, getAllTags } from "@/lib/blog";
+import { getSortedPostsData, getAllTags, getBlogStats } from "@/lib/blog";
 import BlogSearch from "@/components/BlogSearch";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import PageLayout from "@/components/PageLayout";
@@ -25,6 +25,7 @@ export const revalidate = 3600;
 export default function Blog() {
   const posts = getSortedPostsData();
   const tags = getAllTags();
+  const stats = getBlogStats();
   const siteUrl = "https://circuit-soul.vercel.app";
 
   const blogSchema = {
@@ -62,6 +63,17 @@ export default function Blog() {
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <p className="text-sm md:text-base text-[var(--accent)]/60">记录思考，分享知识</p>
+          </ScrollReveal>
+          {/* 博客统计 */}
+          <ScrollReveal delay={0.15}>
+            <div className="flex justify-center gap-4 md:gap-6 text-xs md:text-sm text-[var(--foreground)]/50 mt-2">
+              <span>{stats.totalPosts} 篇文章</span>
+              <span className="hidden md:inline">·</span>
+              <span className="hidden md:inline">{stats.totalWords.toLocaleString()} 字</span>
+              <span className="hidden md:inline">·</span>
+              <span className="hidden md:inline">{stats.totalReadTime} 分钟阅读</span>
+              <span className="md:hidden">{stats.totalWords.toLocaleString()} 字 · {stats.totalReadTime} 分钟</span>
+            </div>
           </ScrollReveal>
         </section>
 

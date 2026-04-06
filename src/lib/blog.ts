@@ -179,3 +179,43 @@ export function getPostsByTag(tag: string): BlogPost[] {
   const posts = getSortedPostsData();
   return posts.filter((post) => post.tags?.includes(tag));
 }
+
+export interface BlogStats {
+  totalPosts: number;
+  totalWords: number;
+  totalReadTime: number; // in minutes
+  oldestDate: string;
+  newestDate: string;
+}
+
+export function getBlogStats(): BlogStats {
+  const posts = getSortedPostsData();
+  
+  let totalWords = 0;
+  let totalReadTime = 0;
+  
+  posts.forEach((post) => {
+    const filePath = path.join(postsDirectory, `${post.slug}.md`);
+    const content = fs.readFileSync(filePath, "utf8");
+    const matterResult = matter(content);
+    const textContent = matterResult.content.replace(/^---[\s\S]*?---/, "");
+    
+    // Count words
+    const chineseChars = (textContent.match(/[\u4e00-\u9fa5]/g) || []).length;
+    const englishWords = (textContent.match(/[a-zA-Z]+/g) || []).length;
+    const charCount = chineseChars + englishWords;
+    totalWords += charCount;
+    
+    // Calculate read time (same formula as calculateReadTime)
+    const minutes = Math.ceil(chineseChars / 300 + englishWords / 200);
+    totalReadTime += Math.max(1, minutes);
+  });
+  
+  return {
+    totalPosts: posts.length,
+    totalWords,
+    totalReadTime,
+    oldestDate: posts.length > 0 ? posts[posts.length - 1].date : "",
+    newestDate: posts.length > 0 ? posts[0].date : "",
+  };
+}
