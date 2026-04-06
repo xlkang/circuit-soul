@@ -164,6 +164,26 @@ export async function getPostData(slug: string): Promise<BlogPost> {
   };
 }
 
+export interface TagCount {
+  tag: string;
+  count: number;
+}
+
+export function getTagCounts(): TagCount[] {
+  const posts = getSortedPostsData();
+  const tagMap = new Map<string, number>();
+  
+  posts.forEach((post) => {
+    post.tags?.forEach((tag) => {
+      tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+    });
+  });
+  
+  return Array.from(tagMap.entries())
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
 export function getAllTags(): string[] {
   const posts = getSortedPostsData();
   const tags = new Set<string>();

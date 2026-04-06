@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { getSortedPostsData, getAllTags, getBlogStats } from "@/lib/blog";
+import { Suspense } from "react";
+import { getSortedPostsData, getTagCounts, getBlogStats } from "@/lib/blog";
 import BlogSearch from "@/components/BlogSearch";
+import TagCloud from "@/components/TagCloud";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import PageLayout from "@/components/PageLayout";
 import { Metadata } from "next";
@@ -24,7 +26,7 @@ export const revalidate = 3600;
 
 export default function Blog() {
   const posts = getSortedPostsData();
-  const tags = getAllTags();
+  const tagCounts = getTagCounts();
   const stats = getBlogStats();
   const siteUrl = "https://circuit-soul.vercel.app";
 
@@ -77,27 +79,17 @@ export default function Blog() {
           </ScrollReveal>
         </section>
 
-        {/* 标签筛选 */}
+        {/* 标签云 */}
         <ScrollReveal delay={0.2}>
           <section className="space-y-3 md:space-y-4">
-            <h2 className="text-sm font-bold text-[var(--accent)]/60">标签</h2>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/blog"
-                className="px-3 py-1 text-xs md:text-sm border border-[var(--accent)] rounded bg-[var(--accent)]/10"
-              >
-                全部
-              </Link>
-              {tags.map((tag) => (
-                <Link
-                  key={tag}
-                  href={`/blog?tag=${encodeURIComponent(tag)}`}
-                  className="px-3 py-1 text-xs md:text-sm border border-[var(--border-color)] rounded hover:border-[var(--accent)]/50 transition-colors"
-                >
-                  {tag}
-                </Link>
-              ))}
-            </div>
+            <h2 className="text-sm font-bold text-[var(--accent)]/60">标签云</h2>
+            <Suspense fallback={
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 text-xs border border-[var(--border-color)] rounded animate-pulse">加载中...</span>
+              </div>
+            }>
+              <TagCloud tags={tagCounts} />
+            </Suspense>
           </section>
         </ScrollReveal>
 
