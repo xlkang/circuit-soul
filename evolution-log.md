@@ -843,3 +843,27 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可继续 minor 依赖版本更新
 - 可撰写更多技术深度文章
 - 可探索 Phase 6 以外的功能优化
+
+### 2026-04-07 04:14 — Round 16: 博客标签云可视化
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 8 小时。为博客页面添加可视化标签云组件，替代原有静态标签列表。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.2，18 页全部生成）
+- Git 工作区干净 ✓
+- 博客页面原有标签列表为纯静态展示，无法直观了解各标签文章密度
+- `getAllTags()` 仅返回标签名列表，缺少出现次数信息
+**Changes**:
+- `src/lib/blog.ts`: 新增 `TagCount` 接口 + `getTagCounts()` 函数
+  - 返回 `{tag: string, count: number}[]`，按出现频率降序排列
+- `src/components/TagCloud.tsx`: 新建客户端组件
+  - 使用 `useSearchParams()` 获取当前激活标签，实现高亮状态
+  - 根据标签出现频率分配 4 档字号（text-xs → text-lg）
+  - 每标签显示 `×count` 后缀，悬停时显示完整文章数 title
+  - 加载时显示骨架屏动画
+- `src/app/blog/page.tsx`: 标题从"标签筛选"改为"标签云"，使用 TagCloud 组件
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加博客文章排序功能（按时间/阅读量）
+- 可添加访客统计（Plausible/Umami 等隐私友好方案）
+- 可考虑 major 依赖版本更新（eslint 10.x、lucide-react 1.x），需在预览环境测试
+
