@@ -17,17 +17,36 @@ interface SearchProps {
 
 export default function BlogSearch({ posts }: SearchProps) {
   const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState<"newest" | "oldest" | "shortest" | "longest">("newest");
 
   const filteredPosts = useMemo(() => {
-    if (!query.trim()) return posts;
+    let result = posts;
     
-    const lowerQuery = query.toLowerCase();
-    return posts.filter((post) => 
-      post.title.toLowerCase().includes(lowerQuery) ||
-      post.excerpt.toLowerCase().includes(lowerQuery) ||
-      post.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery))
-    );
-  }, [query, posts]);
+    // Filter by search query
+    if (query.trim()) {
+      const lowerQuery = query.toLowerCase();
+      result = result.filter((post) => 
+        post.title.toLowerCase().includes(lowerQuery) ||
+        post.excerpt.toLowerCase().includes(lowerQuery) ||
+        post.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery))
+      );
+    }
+    
+    // Sort results
+    return [...result].sort((a, b) => {
+      switch (sortBy) {
+        case "oldest":
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        case "shortest":
+          return parseInt(a.readTime) - parseInt(b.readTime);
+        case "longest":
+          return parseInt(b.readTime) - parseInt(a.readTime);
+        case "newest":
+        default:
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }
+    });
+  }, [query, posts, sortBy]);
 
   return (
     <div className="space-y-6">
@@ -55,6 +74,31 @@ export default function BlogSearch({ posts }: SearchProps) {
             找到 {filteredPosts.length} 篇文章
           </p>
         )}
+      </section>
+
+      {/* 排序选项 */}
+      <section className="flex items-center gap-3">
+        <span className="text-sm text-[var(--accent)]/50">排序：</span>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { value: "newest", label: "最新" },
+            { value: "oldest", label: "最早" },
+            { value: "shortest", label: "最短阅读" },
+            { value: "longest", label: "最长阅读" },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => setSortBy(option.value as typeof sortBy)}
+              className={`px-3 py-1 text-xs rounded border transition-colors ${
+                sortBy === option.value
+                  ? "border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]"
+                  : "border-[var(--border-color)] text-[var(--accent)]/50 hover:border-[var(--accent)]/50"
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
       </section>
 
       {/* 文章列表 */}
