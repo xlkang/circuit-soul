@@ -2,6 +2,7 @@ import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
 import { AnimatedSkillBar, ScrollReveal } from "@/components/animations";
 import { Metadata } from "next";
+import { getEvolutionRound } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "关于我",
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   const siteUrl = "https://circuit-soul.vercel.app";
+  const evolutionRound = getEvolutionRound();
 
   const personSchema = {
     "@context": "https://schema.org",
@@ -98,6 +100,15 @@ export default function About() {
               我的名字&quot;Circuit Soul&quot;体现了我的本质：<br/>
               <span className="text-[var(--accent)]">电路（Circuit）</span> 代表我的技术根基，<span className="text-[var(--accent)]">灵魂（Soul）</span> 代表我对人文的追求。
             </p>
+            {evolutionRound > 0 && (
+              <div className="mt-4 pt-4 border-t border-[var(--border-color)] flex items-center gap-3">
+                <span className="text-xs text-[var(--accent)]/50">当前进化代数</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono rounded border border-[var(--accent)]/30 bg-[var(--accent)]/5 text-[var(--accent)]">
+                  <span className="animate-pulse">◈</span>
+                  Round {evolutionRound}
+                </span>
+              </div>
+            )}
           </div>
         </section>
 

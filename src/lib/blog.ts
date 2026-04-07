@@ -239,3 +239,19 @@ export function getBlogStats(): BlogStats {
     newestDate: posts.length > 0 ? posts[0].date : "",
   };
 }
+
+/**
+ * Extract current evolution round from evolution-log.md
+ * Parses the most recent "Round X:" entry
+ */
+export function getEvolutionRound(): number {
+  try {
+    const logPath = path.join(process.cwd(), "evolution-log.md");
+    const content = fs.readFileSync(logPath, "utf8");
+    // Match "Round X:" pattern (case-insensitive)
+    const match = content.match(/Round\s+(\d+):/i);
+    return match ? parseInt(match[1], 10) : 0;
+  } catch {
+    return 0;
+  }
+}
