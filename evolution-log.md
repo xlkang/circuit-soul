@@ -924,3 +924,22 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可探索 major 依赖版本更新（需在预览环境充分测试）
 - 可添加博客统计功能（总字数、总阅读时间）
 - 可考虑添加访客统计（Plausible/Umami 等隐私友好方案）
+
+### 2026-04-08 04:14 — Round 20: 博客文章排序功能
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。博客已有搜索和标签云功能，但文章仅按默认日期排序。添加排序功能提升用户体验。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.2，18 页全部生成）
+- Git 工作区干净 ✓
+- 所有依赖已为最新 minor 版本
+**Changes**:
+- `src/components/BlogSearch.tsx`: 新增排序功能
+  - 添加 `sortBy` state（newest/oldest/shortest/longest）
+  - 排序在搜索过滤后应用，保持搜索体验
+  - 使用按钮组 UI，当前选项高亮显示
+  - 支持键盘操作（button 元素）
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加访客统计（Plausible/Umami 等隐私友好方案）
+- 可撰写更多技术深度文章
+- 可探索 Phase 6 以外的功能优化
