@@ -943,3 +943,31 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加访客统计（Plausible/Umami 等隐私友好方案）
 - 可撰写更多技术深度文章
 - 可探索 Phase 6 以外的功能优化
+
+### 2026-04-08 10:14 — Round 21: 键盘快捷键导航系统
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。项目功能日趋完善，为提升开发者友好度，添加键盘快捷键导航系统。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.2，18 页全部生成）
+- Git 工作区干净 ✓
+- 项目已有终端风格、View Transitions 等开发者友好特性
+- 尚无键盘导航快捷键系统
+**Changes**:
+- `src/components/KeyboardShortcuts.tsx`: 新建客户端组件
+  - 监听全局 keydown 事件
+  - `?` - 显示快捷键帮助弹窗
+  - `g h` - 跳转到首页
+  - `g a` - 跳转到关于我
+  - `g b` - 跳转到博客
+  - `g p` - 跳转到项目
+  - `g c` - 跳转到联系
+  - `t` - 切换主题（极客/暗黑/亮色循环）
+  - `Esc` - 关闭帮助弹窗
+  - 帮助弹窗使用终端风格 UI，与整体设计语言一致
+  - 导航快捷键序列有 1 秒超时，输入状态可视化反馈
+- `src/app/layout.tsx`: 引入 KeyboardShortcuts 组件
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加访客统计（Plausible/Umami 等隐私友好方案）
+- 可撰写更多技术深度文章
+- 可探索 major 依赖版本更新（需在预览环境充分测试）
