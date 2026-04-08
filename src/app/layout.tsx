@@ -6,6 +6,7 @@ import ThemeProvider from "./theme-provider";
 import { metadata } from "./metadata";
 import ServiceWorkerRegistration from "@/components/service-worker-registration";
 import WebVitals from "@/components/WebVitals";
+import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default function RootLayout({
           <ViewTransitions>
             {children}
           </ViewTransitions>
+          <KeyboardShortcuts />
         </ThemeProvider>
         <WebVitals />
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
