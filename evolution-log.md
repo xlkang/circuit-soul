@@ -1,3 +1,27 @@
+### 2026-04-10 04:14 — Round 20: 博客文章相关推荐功能
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 56 小时。为博客详情页添加相关文章推荐，基于标签相似度评分排序。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.2，18 页全部生成）
+- Git 工作区干净 ✓
+- 项目稳定期，依赖无 minor/patch 更新（major 版本跳号跳过）
+- SPEC.md 中 Next 提到"可添加博客文章相关推荐（基于标签相似度）"
+**Changes**:
+- `src/lib/blog.ts`: 新增 `getRelatedPosts(slug, tags, limit)` 函数
+  - 基于 sharedTagCount × 10 + recencyScore 评分
+  - 过滤自身，按评分降序返回最多 limit 篇
+- `src/components/RelatedPosts.tsx`: 新建组件
+  - 桌面端网格布局，每篇显示标题、日期、阅读时间、共同标签
+  - hover 时边框高亮 + 背景微亮过渡效果
+- `src/app/blog/[slug]/page.tsx`: 调用 getRelatedPosts 传递相关推荐
+- `src/app/blog/[slug]/BlogPostClient.tsx`: 渲染 RelatedPosts 组件
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 可添加博客标签云可视化
+- 可在预览环境测试 major 版本升级
+- 可添加访客统计（Plausible/Umami 等隐私友好方案）
+
+
 ### 2026-04-06 16:14 — Round 15: 博客统计面板 + SPEC.md 内容同步
 **Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。为博客列表页添加统计面板，同步更新 SPEC.md。
 **Research**:
