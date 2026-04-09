@@ -8,7 +8,8 @@ import ShareButtons from "@/components/ShareButtons";
 import Giscus from "@/components/Giscus";
 import Breadcrumb from "@/components/Breadcrumb";
 import TableOfContents from "@/components/TableOfContents";
-import type { Heading } from "@/lib/blog";
+import RelatedPosts from "@/components/RelatedPosts";
+import type { Heading, RelatedPost } from "@/lib/blog";
 
 export default function BlogPostClient({ 
   children,
@@ -16,7 +17,8 @@ export default function BlogPostClient({
   date,
   readTime,
   tags,
-  headings
+  headings,
+  relatedPosts
 }: { 
   children: React.ReactNode;
   title: string;
@@ -24,6 +26,7 @@ export default function BlogPostClient({
   readTime: string;
   tags?: string[];
   headings?: Heading[];
+  relatedPosts?: RelatedPost[];
 }) {
   const params = useParams();
   const slug = params.slug as string;
@@ -96,6 +99,9 @@ export default function BlogPostClient({
 
         {/* Giscus 评论 */}
         <Giscus />
+
+        {/* 相关文章推荐 */}
+        <RelatedPosts posts={relatedPosts || []} />
 
         {/* 底部导航 */}
         <div className="mt-10 md:mt-16 pt-6 md:pt-8 border-t border-[var(--border-color)] max-w-3xl">

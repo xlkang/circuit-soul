@@ -240,6 +240,46 @@ export function getBlogStats(): BlogStats {
   };
 }
 
+export interface RelatedPost {
+  slug: string;
+  title: string;
+  date: string;
+  readTime: string;
+  sharedTags: string[];
+  sharedCount: number;
+}
+
+/**
+ * Get related posts based on shared tags and recency
+ * Score = sharedTagCount * 10 + recencyScore (newer = higher)
+ */
+export function getRelatedPosts(slug: string, tags: string[] = [], limit = 3): RelatedPost[] {
+  const allPosts = getSortedPostsData();
+  const tagSet = new Set(tags.map((t) => t.toLowerCase()));
+
+  const scored = allPosts
+    .filter((p) => p.slug !== slug)
+    .map((p) => {
+      const shared = (p.tags || []).filter((t) => tagSet.has(t.toLowerCase()));
+      // Recency score: top post gets 3, next gets 2, next gets 1
+      const idx = allPosts.findIndex((x) => x.slug === p.slug);
+      const recencyScore = Math.max(0, 3 - idx);
+      const score = shared.length * 10 + recencyScore;
+      return { post: p, shared, score };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || (b.post.date > a.post.date ? 1 : -1));
+
+  return scored.slice(0, limit).map(({ post, shared }) => ({
+    slug: post.slug,
+    title: post.title,
+    date: post.date,
+    readTime: post.readTime,
+    sharedTags: shared,
+    sharedCount: shared.length,
+  }));
+}
+
 /**
  * Extract current evolution round from evolution-log.md
  * Parses the most recent "Round X:" entry

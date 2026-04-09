@@ -1,7 +1,7 @@
 // ISR: 每小时增量静态重生成
 export const revalidate = 3600;
 
-import { getPostData, getAllPostSlugs } from "@/lib/blog";
+import { getPostData, getAllPostSlugs, getRelatedPosts } from "@/lib/blog";
 import BlogPostClient from "./BlogPostClient";
 import { Metadata } from "next";
 
@@ -49,6 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getPostData(slug);
+  const relatedPosts = getRelatedPosts(slug, post.tags, 3);
   const siteUrl = "https://circuit-soul.vercel.app";
 
   const jsonLd = {
@@ -77,6 +78,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         readTime={post.readTime}
         tags={post.tags}
         headings={post.headings || []}
+        relatedPosts={relatedPosts}
       >
         <div dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
       </BlogPostClient>
