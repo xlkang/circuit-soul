@@ -1,3 +1,18 @@
+### 2026-04-10 10:14 — Round 21: 项目稳定期检查
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。项目状态稳定，依赖无新的 minor/patch 更新，major 版本按惯例跳过避免 breaking changes。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.2，15 页全部生成）
+- Git 工作区干净 ✓
+- npm outdated：4 个 major 版本更新可用（@types/node 20→25, eslint 9→10, lucide-react 0.577→1.8, typescript 5.9→6），均跳过
+- SPEC.md 所有 Phase 已完成
+**Changes**:
+- 无（项目状态稳定，无需强制更改）
+**Next**:
+- 可在预览环境测试 major 版本升级（建议从 lucide-react 1.x 开始，breaking changes 相对较少）
+- 可添加博客标签云可视化
+- 可添加访客统计（Plausible/Umami 等隐私友好方案）
+
 ### 2026-04-10 04:14 — Round 20: 博客文章相关推荐功能
 **Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 56 小时。为博客详情页添加相关文章推荐，基于标签相似度评分排序。
 **Research**:
