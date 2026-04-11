@@ -7,6 +7,7 @@ import { metadata } from "./metadata";
 import ServiceWorkerRegistration from "@/components/service-worker-registration";
 import WebVitals from "@/components/WebVitals";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
+import UmamiAnalytics from "@/components/UmamiAnalytics";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -72,6 +73,7 @@ export default function RootLayout({
         </ThemeProvider>
         <WebVitals />
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        <UmamiAnalytics />
       </body>
     </html>
   );

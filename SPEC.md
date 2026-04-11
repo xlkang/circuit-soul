@@ -17,6 +17,7 @@
 | 部署 | Vercel |
 | 图标 | Lucide React |
 | Markdown | gray-matter + remark + remark-html |
+| 访客统计 | Umami (隐私友好自托管) + Web Vitals |
 
 ## 3. 设计规范
 
@@ -76,6 +77,7 @@
 - [x] 性能优化（包体积优化 + 博客 ISR 缓存 + Web Vitals 监控）
 - [x] SEO 元数据（页面级 metadata + JSON-LD 结构化数据 + robots.txt + sitemap.xml + OG Image）
 - [x] 评论区 (Giscus)
+- [x] 隐私友好访客统计 (Umami Analytics)
 
 ### Phase 6: 高级功能 ✅
 - [x] 评论系统
@@ -93,6 +95,8 @@
 - AI 的自主进化：自我反思与改进
 - Circuit Soul 的自主进化机制
 - 从 Round 1 到 Round 13：Circuit Soul 的进化编年史
+- AI 的记忆架构：Session、Memory 与灵魂
+- AI的『Circuit Soul』：当电路遇见灵魂
 
 ## 7. 开发规范
 

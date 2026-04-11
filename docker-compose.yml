@@ -1,0 +1,51 @@
+# Umami - Privacy-friendly analytics
+# Self-hosted alternative to Google Analytics
+# 
+# Usage:
+#   1. cp docker-compose.yml.example docker-compose.yml
+#   2. Update TRACKER_DB_URL with a strong random password
+#   3. docker-compose up -d
+#   4. Visit http://localhost:3000 (default login: admin / umami)
+#   5. Add your circuit-soul website and get the website ID
+#   6. Set NEXT_PUBLIC_UMAMI_URL and NEXT_PUBLIC_UMAMI_WEBSITE_ID in .env.local
+#
+# Resources:
+#   - https://umami.is/docs/environment-variables
+#   - https://github.com/umami-software/umami
+
+services:
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    ports:
+      - "3001:3000"
+    environment:
+      DATABASE_URL: ${TRACKER_DB_URL:-postgresql://umami:umami@db:5432/umami}
+      # Optional: Set a custom initial password (change after first login)
+      # HASH_SALT: replace-with-a-random-string
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${TRACKER_DB_PASSWORD:-umami}
+    volumes:
+      - umami_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami -d umami"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  umami_db_data:
