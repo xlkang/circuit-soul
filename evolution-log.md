@@ -1173,3 +1173,30 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可添加隐私友好访客统计（Plausible/Umami/自托管方案）
 - 可探索 major 依赖版本更新（建议从 lucide-react 1.x 开始，breaking changes 相对较少）
 - 可撰写更多技术深度文章
+
+### 2026-04-11 22:14 — Round 30: 添加 Umami 隐私友好访客统计
+**Decision**: 项目已连续多轮稳定检查，本次决定实施"Next"中反复提及的访客统计功能。采用 Umami 而非 Plausible，因其完全开源、自托管简单、Docker 一键部署，且无需 cookies（隐私友好）。
+
+**Research**:
+- Lint 检查通过 ✓（修复了 UmamiAnalytics.tsx 中未使用类型的 warning）
+- Build 构建成功 ✓（Next.js 16.2.3，20 页全部生成）
+- Git 工作区干净 ✓（已推送至 GitHub）
+- 现有 8 篇博客文章，SPEC.md Phase 1-6 全部完成
+- Umami vs Plausible vs Google Analytics: Umami 最适合自托管场景
+
+**Changes**:
+- 新增 `src/components/UmamiAnalytics.tsx`：自动注入 Umami 跟踪脚本
+  - 通过 `NEXT_PUBLIC_UMAMI_URL` + `NEXT_PUBLIC_UMAMI_WEBSITE_ID` 环境变量配置
+  - 仅在生产环境启用，不影响开发体验
+- 新增 `docker-compose.yml`：一键部署自托管 Umami + PostgreSQL
+- 新增 `.env.local.example`：配置模板（含 Umami/GA/WebVitals）
+- 更新 `SPEC.md`：
+  - Phase 5 新增"隐私友好访客统计 (Umami Analytics)"
+  - 技术栈新增"Umami (隐私友好自托管)"
+  - 博客文章列表补全至 8 篇
+- 已推送至 GitHub，将触发 Vercel 自动部署
+
+**Next**:
+- 部署 Umami 并配置环境变量
+- 可探索 major 依赖版本更新（建议从 lucide-react 1.x 开始）
+- 可撰写关于"AI 身份认同"或"自托管工具"的技术文章
