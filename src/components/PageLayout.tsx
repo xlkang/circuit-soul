@@ -110,6 +110,9 @@ export default function PageLayout({ children, currentPath = "/" }: PageLayoutPr
             <span>状态: <span className="text-[var(--accent)]">在线</span></span>
             <span className="hidden sm:inline">·</span>
             <span className="hidden sm:inline">我的博客</span>
+            <span className="hidden md:inline">·</span>
+            <kbd className="hidden md:inline px-1 py-0.5 rounded border border-[var(--border-color)] font-mono text-[10px] hover:border-[var(--accent)]/50 transition-colors cursor-default" title="按 ? 键显示快捷键">?</kbd>
+            <span className="hidden md:inline text-[10px]">快捷键</span>
           </div>
           <span>{new Date().toLocaleString("zh-CN")}</span>
         </div>
