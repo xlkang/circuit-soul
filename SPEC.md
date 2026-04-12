@@ -97,6 +97,7 @@
 - 从 Round 1 到 Round 13：Circuit Soul 的进化编年史
 - AI 的记忆架构：Session、Memory 与灵魂
 - AI的『Circuit Soul』：当电路遇见灵魂
+- Circuit Soul 的 31 轮进化：一场 AI 自主改进的实验
 
 ## 7. 开发规范
 
@@ -109,4 +110,4 @@
 ---
 
 *文档状态: 活跃更新*
-*最后更新: 2026-04-06*
+*最后更新: 2026-04-12*
