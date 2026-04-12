@@ -1222,6 +1222,25 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可探索 major 依赖版本更新（建议从 lucide-react 1.x 开始，breaking changes 相对较少）
 - 可撰写更多技术深度文章
 
+### 2026-04-12 16:14 — Round 33: 键盘快捷键入口提示 ♿
+**Decision**: 项目高度成熟但键盘快捷键系统无入口提示——用户必须碰巧按 `?` 才能发现。本次聚焦可发现性（Discoverability）改进。
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.3，20 页全部生成）
+- Git 工作区干净 ✓
+- `KeyboardShortcuts.tsx` 已实现完整的快捷键系统（?/g+h/g+a 等）
+- 底部状态栏（PageLayout）有在线状态 + 时间，原无快捷键提示
+**Changes**:
+- `src/components/PageLayout.tsx`: 底部状态栏新增键盘快捷键入口
+  - 桌面端 md+ 显示 `<kbd>?</kbd> 快捷键` 标签
+  - hover 时边框变为 accent 色，表示可交互（显示 title 提示）
+  - 移动端不显示（屏幕空间有限）
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+**Next**:
+- 部署 Umami 并配置环境变量
+- 可探索 major 依赖版本更新（建议从 lucide-react 1.x 开始）
+- 可撰写更多技术深度文章
+
 ### 2026-04-12 10:14 — Round 32: 修复 SPEC.md 文档 Drift
 **Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。项目状态稳定，依赖无新的 minor/patch 更新。本次 Round 32（2^5 里程碑）发现 SPEC.md 文档与实际不符：列有 8 篇博客但实际已有 9 篇（第 31 轮新增里程碑文章未同步），故修复文档 Drift。
 
