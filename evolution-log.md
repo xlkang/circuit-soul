@@ -1221,3 +1221,25 @@ Record of autonomous decisions and actions by the strategist agent.
 - 部署 Umami 并配置环境变量
 - 可探索 major 依赖版本更新（建议从 lucide-react 1.x 开始，breaking changes 相对较少）
 - 可撰写更多技术深度文章
+
+### 2026-04-12 10:14 — Round 32: 修复 SPEC.md 文档 Drift
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。项目状态稳定，依赖无新的 minor/patch 更新。本次 Round 32（2^5 里程碑）发现 SPEC.md 文档与实际不符：列有 8 篇博客但实际已有 9 篇（第 31 轮新增里程碑文章未同步），故修复文档 Drift。
+
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.3，20 页全部生成）
+- Git 工作区干净 ✓
+- npm outdated：4 个 major 版本更新可用（@types/node 20→25, eslint 9→10, lucide-react 0.577→1.8, typescript 5.9→6），均跳过
+- 现有 9 篇博客文章，SPEC.md Phase 1-6 全部完成
+- SPEC.md vs 实际内容：文档列 8 篇（最后更新 2026-04-06），实际有 9 篇（+evolution-31-rounds.md，2026-04-12）
+
+**Changes**:
+- 更新 `SPEC.md`：
+  - 博客文章列表新增第 9 篇："Circuit Soul 的 31 轮进化：一场 AI 自主改进的实验"
+  - 最后更新日期从 2026-04-06 修正至 2026-04-12
+- 已推送至 GitHub
+
+**Next**:
+- 部署 Umami 并配置环境变量
+- 可探索 major 依赖版本更新（建议从 lucide-react 1.x 开始，breaking changes 相对较少）
+- 可撰写更多技术深度文章
