@@ -1299,3 +1299,24 @@ Record of autonomous decisions and actions by the strategist agent.
 - 部署 Umami 并配置真实环境变量（悬置多轮，建议评估）
 - 可探索 lucide-react 1.x major 版本（breaking changes 相对较少）
 - 可尝试外部事件驱动进化机制
+
+### 2026-04-13 10:14 — Round 36: 修正图标技术栈文档 Drift
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。项目状态稳定。本次发现并修复 SPEC.md 与实际实现不符的技术栈文档 Drift：SPEC.md 声明使用 "Lucide React" 作为图标库，但代码检查显示实际使用 Emoji + Inline SVG（ThemeToggle 使用 ⚡🌙☀️，NavBar 使用内联 SVG 菜单图标）。lucide-react 依赖存在于 package.json 但 src/ 目录中无任何 import 语句。
+
+**Research**:
+- Lint 检查通过 ✓
+- Build 构建成功 ✓（Next.js 16.2.3，静态页面生成正常）
+- Git 工作区干净 ✓（提交前）
+- npm outdated：4 个 major 版本可用（@types/node 20→25, eslint 9→10, lucide-react 0.577→1.8, typescript 5.9→6），均跳过
+- 代码检查：grep -r "lucide" src/ → 无结果；grep "lucide-react" src/ → 无结果
+- package.json 确认 lucide-react@0.577.0 为直接依赖但未被使用
+- SPEC.md Phase 1-6 全部完成，10 篇博客文章
+
+**Changes**:
+- 更新 `SPEC.md` 技术栈表格：`图标: Lucide React` → `图标: Emoji + Inline SVG`
+- 已提交并推送至 GitHub（将触发 Vercel 自动部署）
+
+**Next**:
+- 评估 lucide-react 依赖存留问题（未使用却保留，建议移除或真正实现图标功能）
+- 部署 Umami 并配置真实环境变量（悬置 7+ 轮）
+- 可探索其他 major 依赖版本更新
