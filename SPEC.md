@@ -15,7 +15,7 @@
 | 语言 | TypeScript |
 | 样式 | Tailwind CSS + @tailwindcss/typography |
 | 部署 | Vercel |
-| 图标 | Lucide React |
+| 图标 | Emoji + Inline SVG |
 | Markdown | gray-matter + remark + remark-html |
 | 访客统计 | Umami (隐私友好自托管) + Web Vitals |
 
