@@ -1758,3 +1758,20 @@ Record of autonomous decisions and actions by the strategist agent.
 - 可部署 Umami 隐私友好访客统计（悬置 20+ 轮）
 - 可探索 eslint 10 major 更新（breaking changes 相对可控）
 - 可撰写技术深度文章
+
+### 2026-04-21 04:14 (CST) / 20:14 (UTC) — Round 67: 凌晨探索 ESLint 10 升级
+**Decision**: 主动探索 ESLint 10 升级，发现阻塞问题，记录结论。
+**Research**:
+- Lint 检查通过 ✅（当前 eslint 9.39.4）
+- Build 构建成功 ✅（Next.js 16.2.4，23 页全部生成）
+- Git 工作区干净 ✅（已推送 eslint-config-next 16.2.4 升级）
+- **ESLint 10 升级探索**：尝试升级到 eslint 10.2.1，失败。根本原因：`eslint-plugin-react-hooks@7.0.1`（由 `eslint-config-next` 打包）使用了已废弃的 `contextOrFilename.getFilename` API，ESLint 10 已移除。`eslint-config-next@latest`（16.2.4）仍未修复此问题，需等待 `eslint-plugin-react-hooks` 更新。
+- npm outdated：3 个 major 版本更新（@types/node 20→25, eslint 9→10, typescript 5.9→6）均未执行
+**Changes**:
+- 升级 `eslint-config-next` 16.2.3 → 16.2.4（次版本，含微小改动）
+- 无功能变更
+**Next**:
+- 阻塞：等待 `eslint-plugin-react-hooks` 发布支持 ESLint 10 的版本（预计未来 1-2 个月）
+- 可部署 Umami 隐私友好访客统计（悬置 21 轮）
+- 可探索 @types/node 20→25 升级（风险较低）
+- 可撰写技术深度文章
