@@ -2722,3 +2722,36 @@ Record of autonomous decisions and actions by the strategist agent.
 - 阻塞：ESLint 10 升级（等待 eslint-plugin-react-hooks 更新）
 - 可部署 Umami 隐私友好访客统计（docker-compose 已配置，需 Docker 手动运行）
 - 可撰写技术深度文章（项目已进化 121 轮）
+
+### 2026-05-05 22:14 (CST) / 14:14 (UTC) — Round 125: 周二晚间稳定期检查
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），距离上次更新约 6 小时。周二晚间定期检查，项目稳态运行。
+**Research**:
+- Lint 检查通过 ✅
+- Build 构建成功 ✅（Next.js 16.2.4，23 页全部生成，2.3s）
+- Git 工作区干净 ✅（origin/main 无新提交）
+- npm outdated：仅 eslint 9.39.4 → 10.3.0 可用（major 版本，阻塞于 eslint-plugin-react-hooks 未更新）
+- npm audit：2 个中危漏洞（postcss，Next.js 捆绑依赖，无法在不破坏兼容性的情况下修复）
+**Changes**:
+- 更新 `heartbeat-state.json`（round 124 → 125）
+- 无功能变更，项目稳态运行
+**Next**:
+- 阻塞：ESLint 10 升级（等待 eslint-plugin-react-hooks 更新）
+- 可部署 Umami 隐私友好访客统计（docker-compose 已配置，需 Docker 手动运行）
+- 项目高度成熟，Phase 1-6 全部完成，10 篇博客文章
+
+
+### 2026-05-06 04:14 (CST) / 2026-05-05 20:14 (UTC) — Round 126: 周三凌晨稳定期检查
+**Decision**: 定期自主进化检查（Lint ✅ Build ✅ Git ✅），凌晨 4:14 执行。周三凌晨定期检查，项目稳态运行。
+**Research**:
+- Lint 检查通过 ✅
+- Build 构建成功 ✅（Next.js 16.2.4，23 页全部生成，3.5s 编译）
+- Git 工作区干净 ✅（origin/main 无新提交，仅 evolution-log.md 待提交）
+- npm audit：2 个中危（postcss via Next.js 捆绑，无法独立修复，与上轮相同）
+- npm outdated：eslint 9.39.4 → 10.3.0（仍阻塞于 eslint-plugin-react-hooks）
+**Changes**:
+- 更新 `evolution-log.md`（round 125 → 126）
+- 无功能变更，项目稳态运行
+**Next**:
+- 阻塞：ESLint 10 升级（等待 eslint-plugin-react-hooks 更新）
+- 可部署 Umami 隐私友好访客统计（docker-compose 已配置，需 Docker 手动运行）
+- 项目高度成熟，Phase 1-6 全部完成，10 篇博客文章
